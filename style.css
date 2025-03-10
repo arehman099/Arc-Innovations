@@ -119,13 +119,13 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem; /* Increased gap between rows */
+    gap: 3rem;
 }
 
 .service-row {
     display: flex;
     justify-content: center;
-    gap: 3rem; /* Increased gap between cards */
+    gap: 3rem;
 }
 
 .service-card {
@@ -214,86 +214,6 @@ nav ul li a:hover {
 .team-member p {
     font-size: 0.9rem;
     color: #666;
-}
-
-/* Reach to Us Section */
-#contact {
-    padding: 4rem 1rem;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-
-#contact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.reach-to-us {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.reach-to-us h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.6rem;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Bell MT', serif;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #ff6f61;
-    outline: none;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.reach-to-us button {
-    background-color: #ff6f61;
-    color: #fff;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: 'Bell MT', serif; /* Added Bell MT font */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    width: 100%;
-}
-
-.reach-to-us button:hover {
-    background-color: #e65a50;
 }
 
 /* Contact Info Section */
