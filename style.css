@@ -126,6 +126,7 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     gap: 3rem;
+    flex-wrap: wrap; /* Ensures cards wrap on smaller screens */
 }
 
 .service-card {
