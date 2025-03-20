@@ -20,20 +20,33 @@
     </nav>
 
     <!-- Home Section -->
-    <section id="home">
+    <section id="home" class="animate-section">
+        <video autoplay muted loop id="home-video">
+            <source src="A:\Arc-Innovations\vids\3129957-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        </video>
         <h1>Welcome to Arc Innovations</h1>
         <p>Your partner in AI-driven solutions.</p>
         <a href="#services" class="cta-button">Explore Our Services</a>
     </section>
 
     <!-- About Us Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>At Arc Innovations, we specialize in AI-driven solutions, helping businesses stay data-driven and secure. We combine the power of artificial intelligence with advanced data analysis to deliver innovative services that transform your data into actionable insights and secure your digital landscape.</p>
+    <section id="about" class="animate-section">
+        <video autoplay muted loop id="about-video">
+            <source src="vids/7529-201118756.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>At Arc Innovations, we specialize in AI-driven solutions, helping businesses stay data-driven and secure. We combine the power of artificial intelligence with advanced data analysis to deliver innovative services that transform your data into actionable insights and secure your digital landscape.</p>
+        </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services">
+     <!-- Services Section -->
+     <section id="services" class="animate-section">
+        <video autoplay muted loop id="services-video">
+            <source src="vids/2887463-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <h2>Our Services</h2>
         <div class="services-container">
             <!-- First Row -->
@@ -141,7 +154,11 @@
     </section>
 
     <!-- Team Section -->
-    <section id="team">
+    <section id="team" class="animate-section">
+        <video autoplay muted loop id="team-video">
+            <source src="vids/3255275-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <h2>Our Team</h2>
         <div class="team-container">
             <div class="team-member">
@@ -164,7 +181,7 @@
     </section>
 
     <!-- Contact Info Section -->
-    <section id="contact-info">
+    <section id="contact-info" class="animate-section">
         <div class="contact-info-container">
             <p><strong>Email Address:</strong> <a href="mailto:info@arcinnovations.it">info@arcinnovations.it</a></p>
             <p><strong>Contact Number:</strong> <a href="tel:+3516565042">3516565042</a></p>
@@ -176,5 +193,101 @@
     <footer>
         <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
     </footer>
+    <script>
+        // Intersection Observer API
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".animate-section");
+        
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target); // Stop observing once visible
+                        }
+                    });
+                },
+                {
+                    threshold: 0.2, // Trigger when 20% of the section is visible
+                }
+            );
+        
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });</script>
+        
+        <script>
+        // Intersection Observer API    
+        document.addEventListener("DOMContentLoaded", () => {
+            const videos = document.querySelectorAll(".fade-video");
+            let currentIndex = 0;
+        
+            function fadeVideos() {
+                // Remove the active class from the current video
+                videos[currentIndex].classList.remove("active");
+        
+                // Move to the next video
+                currentIndex = (currentIndex + 1) % videos.length;
+        
+                // Add the active class to the next video
+                videos[currentIndex].classList.add("active");
+            }
+        
+            // Set the first video as active
+            videos[currentIndex].classList.add("active");
+        
+            // Change videos every 10 seconds
+            setInterval(fadeVideos, 10000);
+        });</script>
+        
 </body>
+
+<script>
+// Intersection Observer API
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".animate-section");
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        },
+        {
+            threshold: 0.2, // Trigger when 20% of the section is visible
+        }
+    );
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});</script>
+
+<script>
+// Intersection Observer API    
+document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll(".fade-video");
+    let currentIndex = 0;
+
+    function fadeVideos() {
+        // Remove the active class from the current video
+        videos[currentIndex].classList.remove("active");
+
+        // Move to the next video
+        currentIndex = (currentIndex + 1) % videos.length;
+
+        // Add the active class to the next video
+        videos[currentIndex].classList.add("active");
+    }
+
+    // Set the first video as active
+    videos[currentIndex].classList.add("active");
+
+    // Change videos every 10 seconds
+    setInterval(fadeVideos, 10000);
+});</script>
 </html>

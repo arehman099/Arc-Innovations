@@ -1,6 +1,84 @@
 /* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+.fade-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Start hidden */
+    transition: opacity 1.5s ease-in-out; /* Smooth fade effect */
+    z-index: -1; /* Ensure the video stays behind the content */
+}
+
+.fade-video.active {
+    opacity: 1; /* Fully visible when active */
+}
+
+.section {
+    padding: 6rem 1rem;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+#about, #services, #team {
+    position: relative;
+    overflow: hidden;
+}
+
+#about-video, #services-video, #team-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ArchimotoV01 Font */
+@font-face {
+    font-family: 'ArchimotoV01';
+    src: url('fonts/ArchimotoV01-Thin.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;}
+/* Geist Font */
+@font-face {
+    font-family: 'Geist Mono';
+    src: url('fonts/GeistMono-UltraLight.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+/* AstroSpace Font */
+@font-face {
+    font-family: 'AstroSpace';
+    src:url('fonts/AstroSpace-eZ2Bg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Supercharge */
+@font-face {
+    font-family: 'Supercharge';
+    src:url('fonts/SuperchargeExpanded-z83aw.otf') format('openType');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
-    font-family: 'Bell MT', serif;
+    font-family: 'ArchimotoV01','Geist Mono','AstriSpace', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -20,13 +98,14 @@ a {
 
 /* Navigation Bar */
 nav {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-    position: sticky;
+    background: transparent; /* Make the background transparent */
+    position: absolute; /* Position it over the video */
     top: 0;
-    z-index: 1000;
+    left: 0;
+    width: 100%; /* Ensure it spans the full width */
+    z-index: 10; /* Ensure it stays above the video */
+    padding: 1rem 2rem;
+    text-align: center;
 }
 
 nav ul {
@@ -38,11 +117,13 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 1rem;
+    margin: 0 5rem;
+
 }
 
 nav ul li a {
-    color: #fff;
+    color: #18d872;
+    font-size: 2.5rem;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -53,67 +134,146 @@ nav ul li a:hover {
 
 /* Home Section */
 #home {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Picture/background.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    font-family: 'Geist Mono', sans-serif !important;
+    align-self: center;
+    font-size: 1.8rem;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 6rem 1rem;
+    color: #fff;
 }
 
-#home h1 {
-    font-size: 3rem;
+#home-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section */
+    z-index: -1; /* Places the video behind the content */
+}
+
+.hero-content {
+    position: relative;
+    align-self: center;
+    z-index: 1; /* Ensures the content is above the video */
+    color: #fff;
+    padding: 1rem;
+}
+
+#home .hero-content h1 {
+    font-family: 'Geist Mono', sans-serif !important;
+    font-size: 5rem;
+    
     margin-bottom: 1rem;
 }
-
-#home p {
+#home .hero-content p {
+    font-family: 'ArchimotoV01', sans-serif !important;
     font-size: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .cta-button {
-    background-color: #ff6f61;
+    font-family: 'Geist Mono', sans-serif;
+    font-size: 2rem;
+    background-color: #18d872;
     color: #fff;
-    padding: 0.8rem 2rem;
+    padding: 0.4rem 2rem;
     border-radius: 5px;
-    font-size: 1.2rem;
     transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #e65a50;
+    background-color: #dd0f3c;
 }
 
 /* About Us Section */
 #about {
-    padding: 4rem 1rem;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: #fff;
+    color: #fff;
+}
+
+#about-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section */
+    z-index: -1; /* Places the video behind the content */
+}
+
+.about-content {
+    position: relative;
+    z-index: 1; /* Ensures the content is above the video */
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better readability */
+    border-radius: 10px; /* Optional: Add rounded corners */
 }
 
 #about h2 {
-    font-size: 2.5rem;
+    font-family: 'Supercharge', sans-serif;
+    font-size: 4.5rem;
     margin-bottom: 1rem;
 }
 
 #about p {
+    font-family: 'AstroSpace', sans-serif;
     max-width: 800px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.8;
 }
 
+
 /* Services Section */
 #services {
-    padding: 4rem 1rem;
-    background-color: #f4f4f4;
+    position: relative;
+    height: auto; /* Adjust height based on content */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: #00ffaa;
+    padding-bottom: 4rem;
 }
 
 #services h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
 }
+#services-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section */
+    z-index: -1; /* Places the video behind the content */
+}
+
+.services-content {
+    position: relative;
+    z-index: 1; /* Ensures the content is above the video */
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better readability */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
 
 .services-container {
     display: flex;
@@ -182,9 +342,32 @@ nav ul li a:hover {
 
 /* Team Section */
 #team {
-    padding: 4rem 1rem;
-    background-color: #fff;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: #fff;
+}
+
+#team-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section */
+    z-index: -1; /* Places the video behind the content */
+}
+.team-content {
+    position: relative;
+    z-index: 1; /* Ensures the content is above the video */
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better readability */
+    border-radius: 10px; /* Optional: Add rounded corners */
 }
 
 #team h2 {
@@ -200,21 +383,22 @@ nav ul li a:hover {
 }
 
 .team-member {
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a light background for team member cards */
     padding: 1rem;
     border-radius: 10px;
     width: 180px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .team-member h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-}
+    color:#18d872;}
 
 .team-member p {
     font-size: 0.9rem;
-    color: #666;
+    color: #333;
 }
 
 /* Contact Info Section */
