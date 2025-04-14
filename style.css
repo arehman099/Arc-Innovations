@@ -1,6 +1,7 @@
 /* General Styles */
 html {
     scroll-behavior: smooth;
+    overflow-x :hidden;
 }
 .fade-video {
     position: absolute;
@@ -18,13 +19,6 @@ html {
     opacity: 1; /* Fully visible when active */
 }
 
-.section {
-    padding: 6rem 1rem;
-    margin: 0;
-    animation: fadeIn 1s ease-in-out;
-    opacity: 0;
-    animation-fill-mode: forwards;
-}
 #about, #services, #team {
     position: relative;
     overflow: hidden;
@@ -104,7 +98,7 @@ nav {
     left: 0;
     width: 100%; /* Ensure it spans the full width */
     z-index: 10; /* Ensure it stays above the video */
-    padding: 1rem 2rem;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -401,6 +395,11 @@ nav ul li a:hover {
     color: #333;
 }
 
+/* Force Abdul Rehman and Aman Singh to the next row */
+.team-member:nth-child(4),
+.team-member:nth-child(5) {
+    next-row: true;
+}
 /* Contact Info Section */
 #contact-info {
     padding: 2rem 1rem;
