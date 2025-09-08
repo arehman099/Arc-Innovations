@@ -32,10 +32,10 @@
       </div>
     </header>
 
-    <!-- Cover Image -->
+    <!-- Cover Image (UPDATED to ROC curve) -->
     <figure class="article-figure">
-      <img src="Picture/churn-demo.jpg" alt="Customer churn dashboard and model output">
-      <figcaption>Figure 1 — Conceptual overview of churn scoring and BI consumption.</figcaption>
+      <img src="Picture/churn-dashboard.png" alt="Customer churn model ROC curve and evaluation overview">
+      <figcaption>Figure 1 — Conceptual overview of churn scoring and BI consumption (ROC shown).</figcaption>
     </figure>
 
     <!-- Intro -->
@@ -92,7 +92,7 @@ preprocess = ColumnTransformer(
     </section>
 
     <!-- EDA -->
-    <section>
+    <section id="eda">
       <h2>Exploratory Analysis (EDA)</h2>
       <p>
         We observed higher churn among month-to-month contracts and low-tenure customers. Increased
@@ -128,7 +128,7 @@ best = grid.best_estimator_</code></pre>
     </section>
 
     <!-- Evaluation -->
-    <section>
+    <section id="evaluation">
       <h2>Evaluation</h2>
       <div class="stats">
         <div class="stat"><div class="stat__value">0.86</div><div class="stat__label">ROC-AUC</div></div>
