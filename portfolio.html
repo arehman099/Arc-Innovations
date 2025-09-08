@@ -39,107 +39,30 @@
 
     <!-- Grid -->
     <div class="portfolio-grid" id="portfolioGrid">
-      <!-- Card: AI -->
+      <!--
+      ====== CARD TEMPLATE (copy/paste, then edit) ======
       <article class="pf-card" data-cat="ai">
         <div class="pf-card__media">
           <img src="imgs/churn-demo.jpg" alt="Customer Churn Prediction"/>
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Customer Churn Prediction</h3>
-          <p class="pf-card__desc">Supervised model flags at-risk customers and explains key drivers for retention.</p>
+          <p class="pf-card__desc">End-to-end ML pipeline to identify at-risk customers and key churn drivers.</p>
           <div class="pf-card__tags">
             <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span>
           </div>
           <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Case study (soon)</a>
+            <a class="pf-link" href="customer-churn.html">Read case study</a>
           </div>
         </div>
       </article>
+      ====================================================
+      -->
+    </div>
 
-      <!-- Card: Power BI -->
-      <article class="pf-card" data-cat="powerbi">
-        <div class="pf-card__media">
-          <img src="imgs/sales-dashboard.jpg" alt="Sales & Revenue Dashboard"/>
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Sales & Revenue Dashboard</h3>
-          <p class="pf-card__desc">Executive KPIs, regional performance, cohort trends, and drill-through analysis.</p>
-          <div class="pf-card__tags">
-            <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">ETL</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Interactive demo (soon)</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card: Security -->
-      <article class="pf-card" data-cat="security">
-        <div class="pf-card__media">
-          <img src="imgs/email-security.jpg" alt="Phishing Email Classifier"/>
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Phishing Email Classifier</h3>
-          <p class="pf-card__desc">NLP model detects phishing with explainable features for analysts.</p>
-          <div class="pf-card__tags">
-            <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">sklearn</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Model report (soon)</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card: Database -->
-      <article class="pf-card" data-cat="database">
-        <div class="pf-card__media">
-          <img src="imgs/db-optimization.jpg" alt="Database Performance Optimization"/>
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Database Performance Optimization</h3>
-          <p class="pf-card__desc">Indexing and query tuning cut heavy workload runtimes by up to 70%.</p>
-          <div class="pf-card__tags">
-            <span class="tag">MySQL</span><span class="tag">Indexes</span><span class="tag">Tuning</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Technical notes (soon)</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card: AI -->
-      <article class="pf-card" data-cat="ai">
-        <div class="pf-card__media">
-          <img src="imgs/forecasting.jpg" alt="Demand Forecasting"/>
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Demand Forecasting</h3>
-          <p class="pf-card__desc">Time-series pipeline for SKU-level forecasts and stockout alerts.</p>
-          <div class="pf-card__tags">
-            <span class="tag">Python</span><span class="tag">Prophet</span><span class="tag">TS</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Case study (soon)</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card: Power BI -->
-      <article class="pf-card" data-cat="powerbi">
-        <div class="pf-card__media">
-          <img src="imgs/finance-bi.jpg" alt="Finance KPI Suite"/>
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Finance KPI Suite</h3>
-          <p class="pf-card__desc">Cashflow, margin analysis, and variance tracking with row-level security.</p>
-          <div class="pf-card__tags">
-            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">RLS</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="#" aria-disabled="true">Screenshots (soon)</a>
-          </div>
-        </div>
-      </article>
+    <!-- Optional: Empty state message -->
+    <div id="pf-empty" style="text-align:center; padding:2rem 0; color:#666;">
+      No projects added yet. Click a category to filter (will show when projects are added).
     </div>
   </section>
 
@@ -149,20 +72,34 @@
   </footer>
 
   <script>
-    // Category Filtering
+    // Category Filtering (works even if grid is empty)
     const buttons = document.querySelectorAll('.pf-btn');
-    const cards = document.querySelectorAll('.pf-card');
+    const grid = document.getElementById('portfolioGrid');
+    const emptyState = document.getElementById('pf-empty');
+
+    function updateEmptyState() {
+      const visibleCards = grid.querySelectorAll('.pf-card:not([style*="display: none"])');
+      emptyState.style.display = visibleCards.length === 0 ? 'block' : 'none';
+    }
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         const cat = btn.dataset.filter;
+        const cards = grid.querySelectorAll('.pf-card');
+
         cards.forEach(card => {
           const show = cat === 'all' || card.dataset.cat === cat;
           card.style.display = show ? 'block' : 'none';
         });
+
+        updateEmptyState();
       });
     });
+
+    // Initial state
+    updateEmptyState();
   </script>
 </body>
 </html>
