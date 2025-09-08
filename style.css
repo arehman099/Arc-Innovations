@@ -125,6 +125,13 @@ nav ul li a:hover {
     color: #ff6f61;
 }
 
+/* Active nav item */
+nav ul li a.active {
+    color: #ff6f61;
+    border-bottom: 2px solid #ff6f61;
+}
+
+
 /* Home Section */
 #home {
     font-family: 'Geist Mono', sans-serif !important;
@@ -505,3 +512,4 @@ footer p {
     margin: 0;
     font-size: 1rem;
 }
+
