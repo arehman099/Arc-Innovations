@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Churn Prediction — Case Study | Arc Innovations</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="End-to-end machine learning project predicting customer churn with data preprocessing, EDA, modeling, and evaluation."/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="index.html#team">Team</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero / Banner -->
+  <header class="case-hero">
+    <div class="case-hero__overlay"></div>
+    <div class="case-hero__content">
+      <h1>Customer Churn Prediction</h1>
+      <p>End-to-end ML pipeline to identify at-risk customers and enable proactive retention.</p>
+    </div>
+  </header>
+
+  <!-- Case Body -->
+  <main class="case-wrap">
+    <a class="back-link" href="portfolio.html">← Back to Portfolio</a>
+
+    <section class="case-section">
+      <h2>Overview</h2>
+      <p>
+        Customer churn directly impacts recurring revenue. The objective of this project was to build an interpretable
+        machine learning pipeline that predicts which customers are likely to leave, so the business can take action
+        (discounts, targeted outreach, service improvements) <em>before</em> the churn happens.
+      </p>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <h3>Challenge</h3>
+        <p>
+          Identify at-risk customers early with reliable signals and explainability for business stakeholders.
+          Key constraints included categorical-heavy data, class imbalance, and the need for actionable insights.
+        </p>
+      </div>
+      <div>
+        <h3>Outcome</h3>
+        <p>
+          Achieved <strong>~0.86 ROC-AUC</strong> with XGBoost and <strong>high recall</strong> on the churn class.
+          Top drivers included <em>Contract Type</em>, <em>Tenure</em>, and <em>MonthlyCharges</em>.
+          Delivered a simple scoring workflow and a dashboard-ready output table for BI consumption.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Dataset</h2>
+      <p>
+        Public telecom churn dataset (7k+ records, 20+ features): demographics, account information, service usage,
+        and billing. Target: <code>Churn</code> (Yes/No). Split: 80/20 train-test.
+      </p>
+      <ul class="bullets">
+        <li>Size: ~7,043 rows · 21 features</li>
+        <li>Feature types: categorical-heavy (contract, internet service), some numeric (tenure, charges)</li>
+        <li>Imbalance: churn rate around 25–30%</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Approach</h2>
+
+      <h3>1) Data Preparation</h3>
+      <ul class="bullets">
+        <li>Handled missing values and standardized binary fields (<code>Yes/No</code> → 1/0).</li>
+        <li>One-hot encoded multi-class categorical variables (e.g., <code>Contract</code>, <code>InternetService</code>).</li>
+        <li>Scaled numeric columns (<code>tenure</code>, <code>MonthlyCharges</code>, <code>TotalCharges</code>).</li>
+        <li>Train/validation split with stratification to preserve churn ratio.</li>
+      </ul>
+
+      <h3>2) EDA Highlights</h3>
+      <ul class="bullets">
+        <li>Month-to-month contracts and short tenure strongly correlated with churn.</li>
+        <li>Higher <code>MonthlyCharges</code> slightly increased churn propensity.</li>
+        <li>Paperless billing and electronic payments showed notable patterns in churn cohorts.</li>
+      </ul>
+
+      <h3>3) Modeling</h3>
+      <ul class="bullets">
+        <li>Baselines: Logistic Regression and Random Forest.</li>
+        <li>Best: XGBoost with class-weighting and hyperparameter tuning (grid search on depth, estimators, learning rate).</li>
+        <li>Evaluation metrics: Accuracy, Precision/Recall, F1, ROC-AUC; business emphasis on recall to minimize missed churners.</li>
+      </ul>
+
+      <h3>4) Explainability</h3>
+      <ul class="bullets">
+        <li>Feature importance for top drivers (Contract, Tenure, MonthlyCharges, PaymentMethod).</li>
+        <li>Partial dependence / SHAP (optional) for stakeholder understanding.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Results</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__value">0.86</div>
+          <div class="stat__label">ROC-AUC</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">82%</div>
+          <div class="stat__label">Accuracy</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">High</div>
+          <div class="stat__label">Recall (Churn)</div>
+        </div>
+      </div>
+      <p>
+        Business takeaway: prioritize outreach to segments predicted as high-risk; combine with incentives or service fixes.
+        The scoring output (CustomerID, ChurnProbability, RiskBand, TopFactors) is designed to feed a CRM or BI dashboard.
+      </p>
+    </section>
+
+    <section class="case-section">
+      <h2>Deliverables</h2>
+      <ul class="bullets">
+        <li>Cleaned dataset + feature store.</li>
+        <li>Trained model artifact and inference notebook.</li>
+        <li>Scoring table ready for Power BI:</li>
+      </ul>
+
+      <div class="code-like">
+<pre>
+CustomerID, ChurnProbability, RiskBand, TopFactors
+7590-VHVEG, 0.81, High, Contract:Month-to-month; Tenure:Low; MonthlyCharges:High
+5575-GNVDE, 0.65, Medium, Contract:Month-to-month; PaperlessBilling:Yes
+3668-QPYBK, 0.22, Low, Contract:One year; Tenure:High
+</pre>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Tech Stack</h2>
+      <p>Python · Pandas · Scikit-learn · XGBoost · Matplotlib · (Optional) SHAP · Power BI (consumption)</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Next Steps</h2>
+      <ul class="bullets">
+        <li>Deploy a lightweight API for real-time scoring.</li>
+        <li>Schedule monthly retraining and drift monitoring.</li>
+        <li>Integrate with CRM for automated retention workflows.</li>
+      </ul>
+    </section>
+
+    <hr class="case-divider"/>
+
+    <div class="case-cta">
+      <a class="cta-button" href="portfolio.html">Back to Portfolio</a>
+      <a class="cta-outline" href="mailto:info@arcinnovations.it">Discuss a similar project</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
+  </footer>
+</body>
+</html>
