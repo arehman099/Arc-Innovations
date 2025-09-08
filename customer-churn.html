@@ -3,172 +3,197 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Customer Churn Prediction — Case Study | Arc Innovations</title>
+  <title>Customer Churn Prediction — End-to-End Case Study | Arc Innovations</title>
   <link rel="stylesheet" href="style.css"/>
-  <meta name="description" content="End-to-end machine learning project predicting customer churn with data preprocessing, EDA, modeling, and evaluation."/>
+  <meta name="description" content="End-to-end ML project for churn prediction: data prep, EDA, modeling (LogReg, RF, XGBoost), evaluation, and business insights."/>
 </head>
-<body>
-  <!-- Navigation -->
-  <nav>
+<body class="article-body">
+  <!-- Top progress bar -->
+  <div id="read-progress"></div>
+
+  <!-- Minimal Nav (consistent with site) -->
+  <nav class="article-nav">
     <ul>
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="portfolio.html">← Portfolio</a></li>
       <li><a href="index.html#services">Services</a></li>
-      <li><a href="portfolio.html" class="active">Portfolio</a></li>
-      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#contact-info">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Hero / Banner -->
-  <header class="case-hero">
-    <div class="case-hero__overlay"></div>
-    <div class="case-hero__content">
-      <h1>Customer Churn Prediction</h1>
-      <p>End-to-end ML pipeline to identify at-risk customers and enable proactive retention.</p>
-    </div>
-  </header>
+  <main class="article-wrap">
+    <!-- Title Block -->
+    <header class="article-header">
+      <h1>Customer Churn Prediction with Machine Learning</h1>
+      <p class="article-subtitle">An end-to-end pipeline: data preparation, exploratory analysis, modeling, evaluation, and business integration.</p>
+      <div class="article-meta">
+        <span>Arc Innovations</span> ·
+        <span>2025</span> ·
+        <span>Python · Scikit-learn · XGBoost · Pandas</span>
+      </div>
+    </header>
 
-  <!-- Case Body -->
-  <main class="case-wrap">
-    <a class="back-link" href="portfolio.html">← Back to Portfolio</a>
+    <!-- Cover Image -->
+    <figure class="article-figure">
+      <img src="imgs/churn-demo.jpg" alt="Customer churn dashboard and model output">
+      <figcaption>Figure 1 — Conceptual overview of churn scoring and BI consumption.</figcaption>
+    </figure>
 
-    <section class="case-section">
-      <h2>Overview</h2>
+    <!-- Intro -->
+    <section>
       <p>
-        Customer churn directly impacts recurring revenue. The objective of this project was to build an interpretable
-        machine learning pipeline that predicts which customers are likely to leave, so the business can take action
-        (discounts, targeted outreach, service improvements) <em>before</em> the churn happens.
+        Customer churn erodes recurring revenue. This case study demonstrates how we built an interpretable
+        machine-learning workflow to identify at-risk customers early and surface drivers behind churn, enabling
+        proactive retention campaigns.
       </p>
     </section>
 
-    <section class="case-grid">
-      <div>
-        <h3>Challenge</h3>
-        <p>
-          Identify at-risk customers early with reliable signals and explainability for business stakeholders.
-          Key constraints included categorical-heavy data, class imbalance, and the need for actionable insights.
-        </p>
-      </div>
-      <div>
-        <h3>Outcome</h3>
-        <p>
-          Achieved <strong>~0.86 ROC-AUC</strong> with XGBoost and <strong>high recall</strong> on the churn class.
-          Top drivers included <em>Contract Type</em>, <em>Tenure</em>, and <em>MonthlyCharges</em>.
-          Delivered a simple scoring workflow and a dashboard-ready output table for BI consumption.
-        </p>
-      </div>
-    </section>
+    <!-- TL;DR -->
+    <aside class="callout">
+      <strong>TL;DR:</strong> Using a public telecom dataset (~7K rows, 21 features), we cleaned and encoded data,
+      explored churn patterns, trained baseline (LogReg) and tree-based models (RF, XGBoost), and achieved
+      <strong>ROC-AUC ≈ 0.86</strong> with <strong>high recall</strong> on churners. Outputs are designed to plug into BI/CRM.
+    </aside>
 
-    <section class="case-section">
+    <!-- Dataset -->
+    <section>
       <h2>Dataset</h2>
       <p>
-        Public telecom churn dataset (7k+ records, 20+ features): demographics, account information, service usage,
-        and billing. Target: <code>Churn</code> (Yes/No). Split: 80/20 train-test.
+        We used a public telecom churn dataset with demographics, account, and service usage information. The target
+        label is <code>Churn</code> (Yes/No). The data is categorical-heavy (e.g., <code>Contract</code>,
+        <code>InternetService</code>) with a churn rate of ~25–30%.
       </p>
-      <ul class="bullets">
-        <li>Size: ~7,043 rows · 21 features</li>
-        <li>Feature types: categorical-heavy (contract, internet service), some numeric (tenure, charges)</li>
-        <li>Imbalance: churn rate around 25–30%</li>
+      <ul>
+        <li>Records: ~7,043 · Features: 21</li>
+        <li>Split: 80/20 train–test with stratification</li>
+        <li>Imbalance handled via class weights / thresholding</li>
       </ul>
     </section>
 
-    <section class="case-section">
-      <h2>Approach</h2>
-
-      <h3>1) Data Preparation</h3>
-      <ul class="bullets">
-        <li>Handled missing values and standardized binary fields (<code>Yes/No</code> → 1/0).</li>
-        <li>One-hot encoded multi-class categorical variables (e.g., <code>Contract</code>, <code>InternetService</code>).</li>
-        <li>Scaled numeric columns (<code>tenure</code>, <code>MonthlyCharges</code>, <code>TotalCharges</code>).</li>
-        <li>Train/validation split with stratification to preserve churn ratio.</li>
+    <!-- Data Preparation -->
+    <section>
+      <h2>Data Preparation</h2>
+      <ul>
+        <li>Standardized binary fields (<code>Yes/No</code> → 1/0), coerced numeric types (e.g., <code>TotalCharges</code>).</li>
+        <li>One-hot encoding for multi-class categoricals (<code>Contract</code>, <code>InternetService</code>).</li>
+        <li>Scaled numeric features (<code>tenure</code>, <code>MonthlyCharges</code>).</li>
+        <li>Stratified split to preserve churn ratio across train–test.</li>
       </ul>
+      <pre class="code-block"><code># Sketch of preprocessing
+num_cols = ["tenure", "MonthlyCharges", "TotalCharges"]
+cat_cols = ["Contract", "InternetService", "PaymentMethod", "PaperlessBilling"]
 
-      <h3>2) EDA Highlights</h3>
-      <ul class="bullets">
-        <li>Month-to-month contracts and short tenure strongly correlated with churn.</li>
-        <li>Higher <code>MonthlyCharges</code> slightly increased churn propensity.</li>
-        <li>Paperless billing and electronic payments showed notable patterns in churn cohorts.</li>
-      </ul>
-
-      <h3>3) Modeling</h3>
-      <ul class="bullets">
-        <li>Baselines: Logistic Regression and Random Forest.</li>
-        <li>Best: XGBoost with class-weighting and hyperparameter tuning (grid search on depth, estimators, learning rate).</li>
-        <li>Evaluation metrics: Accuracy, Precision/Recall, F1, ROC-AUC; business emphasis on recall to minimize missed churners.</li>
-      </ul>
-
-      <h3>4) Explainability</h3>
-      <ul class="bullets">
-        <li>Feature importance for top drivers (Contract, Tenure, MonthlyCharges, PaymentMethod).</li>
-        <li>Partial dependence / SHAP (optional) for stakeholder understanding.</li>
-      </ul>
+# impute/scale numerics, one-hot encode categoricals
+preprocess = ColumnTransformer(
+    transformers=[
+        ("num", Pipeline([("imputer", SimpleImputer()), ("scaler", StandardScaler())]), num_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols)
+    ]
+)</code></pre>
     </section>
 
-    <section class="case-section">
-      <h2>Results</h2>
+    <!-- EDA -->
+    <section>
+      <h2>Exploratory Analysis (EDA)</h2>
+      <p>
+        We observed higher churn among month-to-month contracts and low-tenure customers. Increased
+        <code>MonthlyCharges</code> slightly raised churn propensity. Paperless billing showed notable patterns.
+      </p>
+      <figure class="article-figure">
+        <img src="imgs/eda-placeholder.jpg" alt="Example EDA bar charts and distributions">
+        <figcaption>Figure 2 — Example EDA views: churn by contract type, tenure distribution, and monthly charges.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Modeling -->
+    <section>
+      <h2>Modeling</h2>
+      <p>We compared baseline and tree-based models, then tuned XGBoost:</p>
+      <ul>
+        <li>Baselines: Logistic Regression, Random Forest</li>
+        <li>Best: XGBoost with class weighting & hyperparameter search (depth, estimators, learning rate)</li>
+        <li>Metrics: Accuracy, Precision/Recall/F1, ROC-AUC; business goal prioritized recall</li>
+      </ul>
+      <pre class="code-block"><code># Sketch of pipeline & tuning
+model = XGBClassifier(eval_metric="logloss", scale_pos_weight=pos_weight)
+clf = Pipeline([("prep", preprocess), ("model", model)])
+
+params = {
+    "model__n_estimators": [200, 400],
+    "model__max_depth": [4, 6],
+    "model__learning_rate": [0.05, 0.1]
+}
+grid = GridSearchCV(clf, param_grid=params, scoring="roc_auc", cv=5, n_jobs=-1)
+grid.fit(X_train, y_train)
+best = grid.best_estimator_</code></pre>
+    </section>
+
+    <!-- Evaluation -->
+    <section>
+      <h2>Evaluation</h2>
       <div class="stats">
-        <div class="stat">
-          <div class="stat__value">0.86</div>
-          <div class="stat__label">ROC-AUC</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value">82%</div>
-          <div class="stat__label">Accuracy</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value">High</div>
-          <div class="stat__label">Recall (Churn)</div>
-        </div>
+        <div class="stat"><div class="stat__value">0.86</div><div class="stat__label">ROC-AUC</div></div>
+        <div class="stat"><div class="stat__value">82%</div><div class="stat__label">Accuracy</div></div>
+        <div class="stat"><div class="stat__value">High</div><div class="stat__label">Recall (Churn)</div></div>
       </div>
       <p>
-        Business takeaway: prioritize outreach to segments predicted as high-risk; combine with incentives or service fixes.
-        The scoring output (CustomerID, ChurnProbability, RiskBand, TopFactors) is designed to feed a CRM or BI dashboard.
+        Threshold selection favored recall to reduce missed churners. Feature importance highlighted
+        <em>Contract</em>, <em>Tenure</em>, and <em>MonthlyCharges</em> as key drivers. SHAP can be added for
+        instance-level explanations.
       </p>
+      <figure class="article-figure">
+        <img src="imgs/feature-importance-placeholder.jpg" alt="Feature importance bar chart">
+        <figcaption>Figure 3 — Example feature importance (tree-based model).</figcaption>
+      </figure>
     </section>
 
-    <section class="case-section">
-      <h2>Deliverables</h2>
-      <ul class="bullets">
-        <li>Cleaned dataset + feature store.</li>
-        <li>Trained model artifact and inference notebook.</li>
-        <li>Scoring table ready for Power BI:</li>
-      </ul>
-
-      <div class="code-like">
-<pre>
-CustomerID, ChurnProbability, RiskBand, TopFactors
+    <!-- Output / Handoff -->
+    <section>
+      <h2>Scoring Output</h2>
+      <p>
+        We produce a BI/CRM-ready table with probabilities, risk bands, and top factors, enabling targeted retention:
+      </p>
+      <pre class="code-block"><code>CustomerID, ChurnProbability, RiskBand, TopFactors
 7590-VHVEG, 0.81, High, Contract:Month-to-month; Tenure:Low; MonthlyCharges:High
 5575-GNVDE, 0.65, Medium, Contract:Month-to-month; PaperlessBilling:Yes
-3668-QPYBK, 0.22, Low, Contract:One year; Tenure:High
-</pre>
-      </div>
+3668-QPYBK, 0.22, Low, Contract:One year; Tenure:High</code></pre>
     </section>
 
-    <section class="case-section">
+    <!-- Tech + Next Steps -->
+    <section>
       <h2>Tech Stack</h2>
       <p>Python · Pandas · Scikit-learn · XGBoost · Matplotlib · (Optional) SHAP · Power BI (consumption)</p>
     </section>
 
-    <section class="case-section">
+    <section>
       <h2>Next Steps</h2>
-      <ul class="bullets">
-        <li>Deploy a lightweight API for real-time scoring.</li>
-        <li>Schedule monthly retraining and drift monitoring.</li>
-        <li>Integrate with CRM for automated retention workflows.</li>
+      <ul>
+        <li>Deploy as a lightweight API for real-time scoring.</li>
+        <li>Schedule monthly retraining & drift monitoring.</li>
+        <li>Integrate with CRM to automate retention workflows.</li>
       </ul>
     </section>
 
-    <hr class="case-divider"/>
+    <hr class="soft-divider"/>
 
-    <div class="case-cta">
-      <a class="cta-button" href="portfolio.html">Back to Portfolio</a>
+    <!-- CTA -->
+    <div class="article-cta">
+      <a class="cta-button" href="portfolio.html">← Back to Portfolio</a>
       <a class="cta-outline" href="mailto:info@arcinnovations.it">Discuss a similar project</a>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
+  <footer class="article-footer">
     <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
   </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      bar.style.width = scrolled + '%';
+    });
+  </script>
 </body>
 </html>
