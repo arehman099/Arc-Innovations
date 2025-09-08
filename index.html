@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li> <!-- NEW -->
             <li><a href="#team">Team</a></li>
         </ul>
     </nav>
@@ -154,6 +154,44 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="animate-section">
+        <h2>Our Portfolio</h2>
+        <p class="portfolio-intro">A showcase of demo projects that reflect our expertise in AI, Data Analytics, Power BI, and Secure Platforms.</p>
+        
+        <div class="portfolio-container">
+            <!-- Project 1 -->
+            <div class="portfolio-card">
+                <img src="imgs/churn-demo.jpg" alt="Customer Churn Prediction">
+                <div class="portfolio-content">
+                    <h3>Customer Churn Prediction</h3>
+                    <p>AI model predicting customers at risk of leaving using machine learning.</p>
+                    <span class="tech-stack">Python · Scikit-learn · Pandas</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="portfolio-card">
+                <img src="imgs/sales-dashboard.jpg" alt="Sales Dashboard">
+                <div class="portfolio-content">
+                    <h3>Sales & Revenue Dashboard</h3>
+                    <p>Interactive Power BI dashboard tracking KPIs, revenue, and trends.</p>
+                    <span class="tech-stack">Power BI · SQL</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="portfolio-card">
+                <img src="imgs/email-security.jpg" alt="Email Security Demo">
+                <div class="portfolio-content">
+                    <h3>Phishing Email Classifier</h3>
+                    <p>AI-based model to detect phishing emails and improve security.</p>
+                    <span class="tech-stack">Python · NLP · Scikit-learn</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Team Section -->
     <section id="team" class="animate-section">
         <video autoplay muted loop id="team-video">
@@ -199,6 +237,8 @@
     <footer>
         <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
     </footer>
+
+    <!-- Animation Scripts -->
     <script>
         // Intersection Observer API
         document.addEventListener("DOMContentLoaded", () => {
@@ -221,79 +261,7 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-        });</script>
-        
-        <script>
-        // Intersection Observer API    
-        document.addEventListener("DOMContentLoaded", () => {
-            const videos = document.querySelectorAll(".fade-video");
-            let currentIndex = 0;
-        
-            function fadeVideos() {
-                // Remove the active class from the current video
-                videos[currentIndex].classList.remove("active");
-        
-                // Move to the next video
-                currentIndex = (currentIndex + 1) % videos.length;
-        
-                // Add the active class to the next video
-                videos[currentIndex].classList.add("active");
-            }
-        
-            // Set the first video as active
-            videos[currentIndex].classList.add("active");
-        
-            // Change videos every 10 seconds
-            setInterval(fadeVideos, 10000);
-        });</script>
-        
+        });
+    </script>
 </body>
-
-<script>
-// Intersection Observer API
-document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll(".animate-section");
-
-    const observer = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target); // Stop observing once visible
-                }
-            });
-        },
-        {
-            threshold: 0.2, // Trigger when 20% of the section is visible
-        }
-    );
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-});</script>
-
-<script>
-// Intersection Observer API    
-document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll(".fade-video");
-    let currentIndex = 0;
-
-    function fadeVideos() {
-        // Remove the active class from the current video
-        videos[currentIndex].classList.remove("active");
-
-        // Move to the next video
-        currentIndex = (currentIndex + 1) % videos.length;
-
-        // Add the active class to the next video
-        videos[currentIndex].classList.add("active");
-    }
-
-    // Set the first video as active
-    videos[currentIndex].classList.add("active");
-
-    // Change videos every 10 seconds
-    setInterval(fadeVideos, 10000);
-});</script>
 </html>
