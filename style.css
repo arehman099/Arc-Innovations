@@ -57,7 +57,7 @@ html {
 }
 
 body {
-    font-family: 'ArchimotoV01','Geist Mono','AstroSpace', sans-serif; /* fixed AstroSpace name */
+    font-family: 'ArchimotoV01','Geist Mono','AstroSpace', sans-serif; /* base; overridden below to Bell MT */
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -223,7 +223,7 @@ nav ul li a.active { color: #ff6f61; border-bottom-color: #ff6f61; }
   transform: none;       /* prevent zooming */
   transition: opacity .3s ease;
 }
-/* remove the old zoom-on-hover to keep full image visible */
+/* keep full image visible even on hover */
 .pf-card:hover .pf-card__media img { transform: none; }
 
 .pf-card__body { padding: 1.25rem 1.25rem 1.4rem; }
@@ -346,4 +346,30 @@ h3 { font-size: 1.2rem; margin: 1rem 0 .4rem; }
 .article-cta .cta-outline:hover { background: #eaf7f1; }
 .article-footer { text-align: center; padding: 1.5rem 0; border-top: 1px solid #f0f0f0; color: #777; }
 
-
+/* ===== Typography Override: Bell MT site-wide ===== */
+:root{
+  --font-serif: "Bell MT", "BellMT", "Times New Roman", serif;
+}
+/* Global default */
+html, body {
+  font-family: var(--font-serif) !important;
+  letter-spacing: .2px;
+}
+/* Apply Bell MT to key elements */
+nav ul li a,
+.cta-button,
+.pf-btn,
+.pf-link,
+.back-link,
+h1, h2, h3,
+#home .hero-content h1,
+#home .hero-content p,
+#about h2, #about p,
+#services h2,
+#team h2,
+.team-member h3, .team-member p,
+#contact-info, footer p,
+.pf-card__title, .pf-card__desc, .tag,
+.article-body, .article-wrap, .article-header h1, .article-subtitle, .article-meta {
+  font-family: var(--font-serif) !important;
+}
