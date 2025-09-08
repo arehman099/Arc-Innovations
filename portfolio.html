@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | Arc Innovations</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="Arc Innovations portfolio — AI, ML, data, and digital transformation projects."/>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <!-- Nav -->
   <nav>
     <ul>
       <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#services">Services</a></li>
       <li><a href="portfolio.html" class="active">Portfolio</a></li>
-      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#contact-info">Contact</a></li>
     </ul>
   </nav>
 
@@ -22,27 +23,28 @@
   <header class="portfolio-hero">
     <div class="portfolio-hero__overlay"></div>
     <div class="portfolio-hero__content">
-      <h1>Our Work</h1>
-      <p>Selected demos showcasing our approach to AI, Analytics, and Secure Platforms.</p>
+      <h1>Our Portfolio</h1>
+      <p>Selected projects in AI, ML, analytics, and digital transformation.</p>
     </div>
   </header>
 
   <!-- Filters -->
-  <section class="portfolio-wrap">
-    <div class="portfolio-controls">
-      <button class="pf-btn is-active" data-filter="all">All</button>
-      <button class="pf-btn" data-filter="ai">AI & ML</button>
-      <button class="pf-btn" data-filter="powerbi">Power BI</button>
-      <button class="pf-btn" data-filter="security">Security</button>
-      <button class="pf-btn" data-filter="database">Database</button>
-    </div>
+  <div class="portfolio-controls">
+    <button class="pf-btn is-active" data-filter="all">All</button>
+    <button class="pf-btn" data-filter="ai">AI & ML</button>
+    <button class="pf-btn" data-filter="bi">Power BI</button>
+    <button class="pf-btn" data-filter="security">Security</button>
+    <button class="pf-btn" data-filter="db">Database</button>
+  </div>
 
-    <!-- Grid -->
-    <div class="portfolio-grid" id="portfolioGrid">
-      <!-- Customer Churn Prediction Project -->
-      <article class="pf-card" data-cat="ai">
+  <!-- Portfolio Grid -->
+  <section class="portfolio-wrap">
+    <div class="portfolio-grid">
+
+      <!-- Customer Churn Card -->
+      <article class="pf-card" data-category="ai">
         <div class="pf-card__media">
-          <img src="churn-demo.jpg" alt="Customer Churn Prediction"/>
+          <img src="Picture/churn-demo.jpg" alt="Customer Churn Prediction">
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Customer Churn Prediction</h3>
@@ -54,52 +56,77 @@
             <span class="tag">XGBoost</span>
           </div>
           <div class="pf-card__cta">
-            <a class="pf-link" href="customer-churn.html">Read case study</a>
+            <a class="pf-link" href="customer-churn.html">Read Case Study</a>
           </div>
         </div>
       </article>
-    </div>
 
-    <!-- Empty state message (hidden now because project exists) -->
-    <div id="pf-empty" style="text-align:center; padding:2rem 0; color:#666; display:none;">
-      No projects added yet. Click a category to filter (will show when projects are added).
+      <!-- Placeholder for additional projects -->
+      <article class="pf-card" data-category="bi">
+        <div class="pf-card__media">
+          <img src="Picture/eda-bar-charts.png" alt="EDA Analysis">
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Exploratory Data Analysis</h3>
+          <p class="pf-card__desc">Bar charts and distributions used for exploratory analysis in ML pipelines.</p>
+          <div class="pf-card__tags">
+            <span class="tag">EDA</span>
+            <span class="tag">Data Viz</span>
+            <span class="tag">Matplotlib</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="customer-churn.html#eda">See Example</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-card" data-category="ai">
+        <div class="pf-card__media">
+          <img src="Picture/feature-importance.png" alt="Feature Importance Chart">
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Feature Importance</h3>
+          <p class="pf-card__desc">Tree-based model feature ranking to identify the most influential churn drivers.</p>
+          <div class="pf-card__tags">
+            <span class="tag">XGBoost</span>
+            <span class="tag">Feature Engineering</span>
+            <span class="tag">Model Explainability</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="customer-churn.html#evaluation">View Details</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
+    <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
 
   <script>
-    // Category Filtering
-    const buttons = document.querySelectorAll('.pf-btn');
-    const grid = document.getElementById('portfolioGrid');
-    const emptyState = document.getElementById('pf-empty');
+    // Portfolio filtering
+    const filterBtns = document.querySelectorAll(".pf-btn");
+    const cards = document.querySelectorAll(".pf-card");
 
-    function updateEmptyState() {
-      const visibleCards = grid.querySelectorAll('.pf-card:not([style*="display: none"])');
-      emptyState.style.display = visibleCards.length === 0 ? 'block' : 'none';
-    }
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.getAttribute("data-filter");
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        const cat = btn.dataset.filter;
-        const cards = grid.querySelectorAll('.pf-card');
+        filterBtns.forEach(b => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
 
         cards.forEach(card => {
-          const show = cat === 'all' || card.dataset.cat === cat;
-          card.style.display = show ? 'block' : 'none';
+          if (filter === "all" || card.dataset.category === filter) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
         });
-
-        updateEmptyState();
       });
     });
-
-    // Initial state
-    updateEmptyState();
   </script>
 </body>
 </html>
