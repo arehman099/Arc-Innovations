@@ -213,11 +213,19 @@ nav ul li a.active { color: #ff6f61; border-bottom-color: #ff6f61; }
 @media (max-width: 900px) { .pf-card { grid-column: span 12; } } /* 1 per row */
 
 /* Card contents */
-.pf-card__media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
+.pf-card__media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #fff; }
 .pf-card__media img {
-  width: 100%; height: 100%; object-fit: cover; transform: scale(1.0); transition: transform .5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* show the full picture, no cropping */
+  padding: 10px;         /* graceful letterboxing */
+  border-radius: 8px;
+  transform: none;       /* prevent zooming */
+  transition: opacity .3s ease;
 }
-.pf-card:hover .pf-card__media img { transform: scale(1.06); }
+/* remove the old zoom-on-hover to keep full image visible */
+.pf-card:hover .pf-card__media img { transform: none; }
+
 .pf-card__body { padding: 1.25rem 1.25rem 1.4rem; }
 .pf-card__title { margin: 0 0 .35rem; font-size: 1.25rem; color: #222; }
 .pf-card__desc { margin: 0 0 1rem; color: #555; line-height: 1.6; }
@@ -337,6 +345,5 @@ h3 { font-size: 1.2rem; margin: 1rem 0 .4rem; }
 }
 .article-cta .cta-outline:hover { background: #eaf7f1; }
 .article-footer { text-align: center; padding: 1.5rem 0; border-top: 1px solid #f0f0f0; color: #777; }
-
 
 
