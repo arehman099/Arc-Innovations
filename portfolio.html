@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | Arc Innovations</title>
   <link rel="stylesheet" href="style.css"/>
-  <meta name="description" content="Arc Innovations portfolio — AI, ML, data, and digital transformation projects."/>
+  <meta name="description" content="Arc Innovations portfolio — AI and analytics projects."/>
 </head>
 <body>
   <!-- Nav -->
@@ -24,24 +24,20 @@
     <div class="portfolio-hero__overlay"></div>
     <div class="portfolio-hero__content">
       <h1>Our Portfolio</h1>
-      <p>Selected projects in AI, ML, analytics, and digital transformation.</p>
+      <p>Selected work in AI and analytics.</p>
     </div>
   </header>
 
-  <!-- Filters -->
-  <div class="portfolio-controls">
+  <!-- (Optional) Filters – keep or remove -->
+  <div class="portfolio-controls" style="display:none;">
     <button class="pf-btn is-active" data-filter="all">All</button>
-    <button class="pf-btn" data-filter="ai">AI & ML</button>
-    <button class="pf-btn" data-filter="bi">Power BI</button>
-    <button class="pf-btn" data-filter="security">Security</button>
-    <button class="pf-btn" data-filter="db">Database</button>
   </div>
 
   <!-- Portfolio Grid -->
   <section class="portfolio-wrap">
     <div class="portfolio-grid">
 
-      <!-- Customer Churn Card -->
+      <!-- Customer Churn Card ONLY -->
       <article class="pf-card" data-category="ai">
         <div class="pf-card__media">
           <img src="Picture/churn-demo.jpg" alt="Customer Churn Prediction">
@@ -61,43 +57,6 @@
         </div>
       </article>
 
-      <!-- Placeholder for additional projects -->
-      <article class="pf-card" data-category="bi">
-        <div class="pf-card__media">
-          <img src="Picture/eda-bar-charts.png" alt="EDA Analysis">
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Exploratory Data Analysis</h3>
-          <p class="pf-card__desc">Bar charts and distributions used for exploratory analysis in ML pipelines.</p>
-          <div class="pf-card__tags">
-            <span class="tag">EDA</span>
-            <span class="tag">Data Viz</span>
-            <span class="tag">Matplotlib</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="customer-churn.html#eda">See Example</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="pf-card" data-category="ai">
-        <div class="pf-card__media">
-          <img src="Picture/feature-importance.png" alt="Feature Importance Chart">
-        </div>
-        <div class="pf-card__body">
-          <h3 class="pf-card__title">Feature Importance</h3>
-          <p class="pf-card__desc">Tree-based model feature ranking to identify the most influential churn drivers.</p>
-          <div class="pf-card__tags">
-            <span class="tag">XGBoost</span>
-            <span class="tag">Feature Engineering</span>
-            <span class="tag">Model Explainability</span>
-          </div>
-          <div class="pf-card__cta">
-            <a class="pf-link" href="customer-churn.html#evaluation">View Details</a>
-          </div>
-        </div>
-      </article>
-
     </div>
   </section>
 
@@ -107,26 +66,7 @@
   </footer>
 
   <script>
-    // Portfolio filtering
-    const filterBtns = document.querySelectorAll(".pf-btn");
-    const cards = document.querySelectorAll(".pf-card");
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const filter = btn.getAttribute("data-filter");
-
-        filterBtns.forEach(b => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
-
-        cards.forEach(card => {
-          if (filter === "all" || card.dataset.category === filter) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
+    // No filters needed since only one card
   </script>
 </body>
 </html>
