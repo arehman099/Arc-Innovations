@@ -1,64 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Arc Innovations</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio | Arc Innovations</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#about">About Us</a></li>
-            <li><a href="index.html#services">Services</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
-            <li><a href="index.html#team">Team</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="index.html#team">Team</a></li>
+    </ul>
+  </nav>
 
-    <!-- Portfolio Page Section -->
-    <section id="portfolio-page">
-        <h1>Our Portfolio</h1>
-        <p class="portfolio-intro">Explore our demo projects that highlight our expertise in AI, Data Analytics, Power BI, and Secure Platforms.</p>
-        
-        <div class="portfolio-container">
-            <!-- Project 1 -->
-            <div class="portfolio-card">
-                <img src="imgs/churn-demo.jpg" alt="Customer Churn Prediction">
-                <div class="portfolio-content">
-                    <h3>Customer Churn Prediction</h3>
-                    <p>AI model predicting customers at risk of leaving using machine learning.</p>
-                    <span class="tech-stack">Python · Scikit-learn · Pandas</span>
-                </div>
-            </div>
+  <!-- Hero -->
+  <header class="portfolio-hero">
+    <div class="portfolio-hero__overlay"></div>
+    <div class="portfolio-hero__content">
+      <h1>Our Work</h1>
+      <p>Selected demos showcasing our approach to AI, Analytics, and Secure Platforms.</p>
+    </div>
+  </header>
 
-            <!-- Project 2 -->
-            <div class="portfolio-card">
-                <img src="imgs/sales-dashboard.jpg" alt="Sales Dashboard">
-                <div class="portfolio-content">
-                    <h3>Sales & Revenue Dashboard</h3>
-                    <p>Interactive Power BI dashboard tracking KPIs, revenue, and trends.</p>
-                    <span class="tech-stack">Power BI · SQL</span>
-                </div>
-            </div>
+  <!-- Filters -->
+  <section class="portfolio-wrap">
+    <div class="portfolio-controls">
+      <button class="pf-btn is-active" data-filter="all">All</button>
+      <button class="pf-btn" data-filter="ai">AI & ML</button>
+      <button class="pf-btn" data-filter="powerbi">Power BI</button>
+      <button class="pf-btn" data-filter="security">Security</button>
+      <button class="pf-btn" data-filter="database">Database</button>
+    </div>
 
-            <!-- Project 3 -->
-            <div class="portfolio-card">
-                <img src="imgs/email-security.jpg" alt="Email Security Demo">
-                <div class="portfolio-content">
-                    <h3>Phishing Email Classifier</h3>
-                    <p>AI-based model to detect phishing emails and improve security.</p>
-                    <span class="tech-stack">Python · NLP · Scikit-learn</span>
-                </div>
-            </div>
+    <!-- Grid -->
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- Card: AI -->
+      <article class="pf-card" data-cat="ai">
+        <div class="pf-card__media">
+          <img src="imgs/churn-demo.jpg" alt="Customer Churn Prediction"/>
         </div>
-    </section>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Customer Churn Prediction</h3>
+          <p class="pf-card__desc">Supervised model flags at-risk customers and explains key drivers for retention.</p>
+          <div class="pf-card__tags">
+            <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Case study (soon)</a>
+          </div>
+        </div>
+      </article>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
-    </footer>
+      <!-- Card: Power BI -->
+      <article class="pf-card" data-cat="powerbi">
+        <div class="pf-card__media">
+          <img src="imgs/sales-dashboard.jpg" alt="Sales & Revenue Dashboard"/>
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Sales & Revenue Dashboard</h3>
+          <p class="pf-card__desc">Executive KPIs, regional performance, cohort trends, and drill-through analysis.</p>
+          <div class="pf-card__tags">
+            <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">ETL</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Interactive demo (soon)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Security -->
+      <article class="pf-card" data-cat="security">
+        <div class="pf-card__media">
+          <img src="imgs/email-security.jpg" alt="Phishing Email Classifier"/>
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Phishing Email Classifier</h3>
+          <p class="pf-card__desc">NLP model detects phishing with explainable features for analysts.</p>
+          <div class="pf-card__tags">
+            <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">sklearn</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Model report (soon)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Database -->
+      <article class="pf-card" data-cat="database">
+        <div class="pf-card__media">
+          <img src="imgs/db-optimization.jpg" alt="Database Performance Optimization"/>
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Database Performance Optimization</h3>
+          <p class="pf-card__desc">Indexing and query tuning cut heavy workload runtimes by up to 70%.</p>
+          <div class="pf-card__tags">
+            <span class="tag">MySQL</span><span class="tag">Indexes</span><span class="tag">Tuning</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Technical notes (soon)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: AI -->
+      <article class="pf-card" data-cat="ai">
+        <div class="pf-card__media">
+          <img src="imgs/forecasting.jpg" alt="Demand Forecasting"/>
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Demand Forecasting</h3>
+          <p class="pf-card__desc">Time-series pipeline for SKU-level forecasts and stockout alerts.</p>
+          <div class="pf-card__tags">
+            <span class="tag">Python</span><span class="tag">Prophet</span><span class="tag">TS</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Case study (soon)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Power BI -->
+      <article class="pf-card" data-cat="powerbi">
+        <div class="pf-card__media">
+          <img src="imgs/finance-bi.jpg" alt="Finance KPI Suite"/>
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Finance KPI Suite</h3>
+          <p class="pf-card__desc">Cashflow, margin analysis, and variance tracking with row-level security.</p>
+          <div class="pf-card__tags">
+            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">RLS</span>
+          </div>
+          <div class="pf-card__cta">
+            <a class="pf-link" href="#" aria-disabled="true">Screenshots (soon)</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
+  </footer>
+
+  <script>
+    // Category Filtering
+    const buttons = document.querySelectorAll('.pf-btn');
+    const cards = document.querySelectorAll('.pf-card');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const cat = btn.dataset.filter;
+        cards.forEach(card => {
+          const show = cat === 'all' || card.dataset.cat === cat;
+          card.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
