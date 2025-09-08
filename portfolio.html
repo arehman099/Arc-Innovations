@@ -8,7 +8,8 @@
   <!-- Primary CSS -->
   <link rel="stylesheet" href="style.css"/>
 
-  <!-- Preload Bell MT font then switch to stylesheet -->
+  <!-- Fonts: connection warm-up + preload -->
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
 
   <!-- SEO -->
@@ -22,7 +23,29 @@
   <meta property="og:image" content="https://www.arcinnovations.it/Picture/churn-demo.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Small, safe overrides for accessibility/UX -->
+  <!-- JSON-LD: portfolio as an item list (extend as you add projects) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Arc Innovations Portfolio",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://www.arcinnovations.it/customer-churn.html",
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Customer Churn Prediction",
+          "description": "End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.",
+          "image": "https://www.arcinnovations.it/Picture/churn-demo.jpg"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Small, safe overrides for accessibility/UX/perf -->
   <style>
     /* Make cards behave like links nicely */
     .pf-card { display:block; text-decoration:none; color:inherit; }
@@ -31,7 +54,7 @@
     /* Hero spacing on small screens so the card is earlier above the fold */
     @media (max-width: 600px){ .portfolio-hero { margin-bottom: 1rem; } }
 
-    /* Ensure images don't exceed their container when using <picture> */
+    /* Ensure images fill their containers and avoid CLS */
     .pf-card__media img { width: 100%; height: 100%; }
   </style>
 </head>
@@ -42,7 +65,7 @@
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#services">Services</a></li>
-      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="portfolio.html" class="active" aria-current="page">Portfolio</a></li>
       <li><a href="index.html#contact-info">Contact</a></li>
     </ul>
   </nav>
@@ -65,19 +88,15 @@
   <section class="portfolio-wrap">
     <div class="portfolio-grid">
 
-      <!-- SINGLE CARD (clickable) -->
+      <!-- SINGLE CARD (whole card clickable) -->
       <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
         <div class="pf-card__media">
-          <picture>
-            <!-- Modern format first -->
-            <source srcset="Picture/churn-demo.webp" type="image/webp">
-            <!-- Fallback JPG with explicit dimensions to avoid CLS -->
-            <img
-              src="Picture/churn-demo.jpg"
-              alt="Customer Churn Prediction project thumbnail"
-              loading="lazy"
-              width="1200" height="675">
-          </picture>
+          <!-- LCP image: eager + high priority + fixed dimensions -->
+          <img
+            src="Picture/churn-demo.jpg"
+            alt="Customer Churn Prediction project thumbnail"
+            width="1200" height="675"
+            loading="eager" fetchpriority="high">
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Customer Churn Prediction</h3>
@@ -104,11 +123,10 @@
     <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
 
-  <!-- If you ever re-enable filters, this works; otherwise harmless. -->
+  <!-- If you ever re-enable filters, this script works; otherwise harmless. -->
   <script defer>
     const filterBtns = document.querySelectorAll(".pf-btn");
     const cards = document.querySelectorAll(".pf-card");
-
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         const filter = btn.getAttribute("data-filter");
