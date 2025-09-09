@@ -5,39 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Enterprise Email Security Implementation | Arc Innovations</title>
 
-  <!-- site stylesheet (one level up from /email-security/) -->
+  <!-- Site CSS (note: this page is in /email-security/) -->
   <link rel="stylesheet" href="../style.css"/>
 
+  <!-- SEO -->
   <meta name="description" content="Automated quarantine digest, threat intel enrichment, and live KPIs built with Microsoft 365, Power Automate, and a lightweight dashboard."/>
+  <link rel="canonical" href="https://www.arcinnovations.it/email-security/index.html"/>
 
-  <!-- Page-scoped helpers so the header matches the Churn case study and sections look polished -->
+  <!-- Social share -->
+  <meta property="og:title" content="Enterprise Email Security Implementation | Arc Innovations">
+  <meta property="og:description" content="Automated quarantine digest, threat intel enrichment, and live KPIs for Microsoft 365.">
+  <meta property="og:url" content="https://www.arcinnovations.it/email-security/index.html">
+  <meta property="og:image" content="https://www.arcinnovations.it/email-security/threat-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Portfolio",
+      "item": "https://www.arcinnovations.it/portfolio.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Enterprise Email Security",
+      "item": "https://www.arcinnovations.it/email-security/index.html"
+    }]
+  }
+  </script>
+
+  <!-- Page-only layout helpers (keep light) -->
   <style>
-    /* Make sure the back link renders even if .back-link wasn't in your CSS yet */
     .back-link{display:block;text-align:center;margin:1.2rem auto .6rem;font-size:2.1rem;color:#222;}
     .back-link:hover{color:#18d872;}
 
-    /* Pro layout containers for the sections below the header */
     .es-container{max-width:1100px;margin:0 auto;padding:0 16px;}
     .es-grid{display:grid;gap:16px}
     @media(min-width:900px){.es-grid-2{grid-template-columns:1fr 1fr}}
     .es-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:22px}
     .es-figure{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:14px}
     .es-pills .tag{margin:6px 6px 0 0}
-
     .es-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .es-kpi{background:#fff;border:1px solid #eee;border-radius:12px;padding:14px;text-align:center}
     .es-kpi .value{font-weight:700;font-size:1.25rem;color:#18d872}
-
     .es-screenshots figure{margin:18px 0}
     .es-screenshots img{width:100%;height:auto;border-radius:12px}
   </style>
 </head>
 
 <body class="article-body">
-  <!-- reading progress (same component used on Churn) -->
+  <!-- Reading progress -->
   <div id="read-progress"></div>
 
-  <!-- Top header EXACTLY like the Churn page -->
+  <!-- Header matching Churn -->
   <a class="back-link" href="../portfolio.html">← Portfolio</a>
   <main class="article-wrap">
     <header class="article-header">
@@ -49,7 +73,7 @@
     </header>
   </main>
 
-  <!-- Professional content (kept + polished) -->
+  <!-- Professional content -->
   <section class="es-container es-grid es-grid-2" aria-label="overview-and-architecture">
     <div class="es-card">
       <h2>Overview</h2>
@@ -70,7 +94,6 @@
 
     <div class="es-figure">
       <h3 class="article-subtitle" style="margin-bottom:10px;">Architecture (simplified)</h3>
-      <!-- simple inline diagram (kept lightweight) -->
       <svg viewBox="0 0 820 270" width="100%" role="img" aria-label="Email security architecture">
         <defs>
           <style>
@@ -154,7 +177,7 @@ Artifacts hosted on GitHub Pages (CSV/JSON)</pre>
 
   <div class="article-footer">© Arc Innovations — Security Automation</div>
 
-  <!-- Tiny scroll progress (same as Churn) -->
+  <!-- Tiny scroll progress -->
   <script>
     (function(){
       const bar=document.getElementById('read-progress'); if(!bar) return;
