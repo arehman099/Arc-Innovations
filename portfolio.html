@@ -13,12 +13,12 @@
   <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
 
   <!-- SEO -->
-  <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study."/>
+  <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study and enterprise email security implementation."/>
   <link rel="canonical" href="https://www.arcinnovations.it/portfolio.html"/>
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Portfolio | Arc Innovations">
-  <meta property="og:description" content="Selected work in AI & analytics, including a full churn prediction case study.">
+  <meta property="og:description" content="Selected work in AI & analytics, including churn prediction and enterprise email security.">
   <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
   <meta property="og:image" content="https://www.arcinnovations.it/Picture/churn-demo.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -40,6 +40,17 @@
           "description": "End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.",
           "image": "https://www.arcinnovations.it/Picture/churn-demo.jpg"
         }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://www.arcinnovations.it/email-security/index.html",
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Enterprise Email Security",
+          "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.",
+          "image": "https://www.arcinnovations.it/email-security/media/digest.png"
+        }
       }
     ]
   }
@@ -47,14 +58,9 @@
 
   <!-- Small, safe overrides for accessibility/UX/perf -->
   <style>
-    /* Make cards behave like links nicely */
     .pf-card { display:block; text-decoration:none; color:inherit; }
     .pf-card:focus-visible { outline: 3px solid #18d872; outline-offset: 3px; }
-
-    /* Hero spacing on small screens so the card is earlier above the fold */
     @media (max-width: 600px){ .portfolio-hero { margin-bottom: 1rem; } }
-
-    /* Ensure images fill their containers and avoid CLS */
     .pf-card__media img { width: 100%; height: 100%; }
   </style>
 </head>
@@ -79,19 +85,13 @@
     </div>
   </header>
 
-  <!-- Filters (hidden for now since we have one project) -->
-  <div class="portfolio-controls" style="display:none;">
-    <button class="pf-btn is-active" data-filter="all">All</button>
-  </div>
-
   <!-- Portfolio Grid -->
   <section class="portfolio-wrap">
     <div class="portfolio-grid">
 
-      <!-- SINGLE CARD (whole card clickable) -->
+      <!-- CARD 1 -->
       <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
         <div class="pf-card__media">
-          <!-- LCP image: eager + high priority + fixed dimensions -->
           <img
             src="Picture/churn-demo.jpg"
             alt="Customer Churn Prediction project thumbnail"
@@ -115,6 +115,32 @@
         </div>
       </a>
 
+      <!-- CARD 2 -->
+      <a class="pf-card" href="email-security/index.html" data-category="security" aria-label="Open Enterprise Email Security project">
+        <div class="pf-card__media">
+          <img
+            src="email-security/media/digest.png"
+            alt="Enterprise Email Security project thumbnail"
+            width="1200" height="675"
+            loading="lazy">
+        </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Enterprise Email Security</h3>
+          <p class="pf-card__desc">
+            Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.
+          </p>
+          <div class="pf-card__tags">
+            <span class="tag">Power Automate</span>
+            <span class="tag">Microsoft Graph</span>
+            <span class="tag">Security</span>
+            <span class="tag">Analytics</span>
+          </div>
+          <div class="pf-card__cta">
+            <span class="pf-link" aria-hidden="true">View Project</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -123,7 +149,7 @@
     <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
 
-  <!-- If you ever re-enable filters, this script works; otherwise harmless. -->
+  <!-- Filtering script -->
   <script defer>
     const filterBtns = document.querySelectorAll(".pf-btn");
     const cards = document.querySelectorAll(".pf-card");
