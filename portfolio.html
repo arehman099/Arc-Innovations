@@ -8,7 +8,7 @@
   <!-- Primary CSS -->
   <link rel="stylesheet" href="style.css"/>
 
-  <!-- Fonts: connection warm-up + preload -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
 
@@ -16,14 +16,14 @@
   <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study and enterprise email security implementation."/>
   <link rel="canonical" href="https://www.arcinnovations.it/portfolio.html"/>
 
-  <!-- Open Graph / Twitter -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Portfolio | Arc Innovations">
   <meta property="og:description" content="Selected work in AI & analytics, including churn prediction and enterprise email security.">
   <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
   <meta property="og:image" content="https://www.arcinnovations.it/Picture/churn-demo.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- JSON-LD: portfolio as an item list (extend as you add projects) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,20 +48,19 @@
         "item": {
           "@type": "CreativeWork",
           "name": "Enterprise Email Security",
-          "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.",
-          "image": "https://www.arcinnovations.it/email-security/media/digest.png"
+          "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365."
         }
       }
     ]
   }
   </script>
 
-  <!-- Small, safe overrides for accessibility/UX/perf -->
   <style>
     .pf-card { display:block; text-decoration:none; color:inherit; }
     .pf-card:focus-visible { outline: 3px solid #18d872; outline-offset: 3px; }
     @media (max-width: 600px){ .portfolio-hero { margin-bottom: 1rem; } }
-    .pf-card__media img { width: 100%; height: 100%; }
+    .pf-card__media svg { width:64px;height:64px }
+    .pf-card__media {display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:#f7f9fb;border:1px solid #eef;border-radius:12px}
   </style>
 </head>
 <body>
@@ -118,11 +117,11 @@
       <!-- CARD 2 -->
       <a class="pf-card" href="email-security/index.html" data-category="security" aria-label="Open Enterprise Email Security project">
         <div class="pf-card__media">
-          <img
-            src="email-security/digest.png"
-            alt="Enterprise Email Security project thumbnail"
-            width="1200" height="675"
-            loading="lazy">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="#0a7f5a" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="4" y="10" width="16" height="10" rx="2" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+            <path d="M5 11l7 5 7-5" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Enterprise Email Security</h3>
@@ -148,21 +147,5 @@
   <footer>
     <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
-
-  <!-- Filtering script -->
-  <script defer>
-    const filterBtns = document.querySelectorAll(".pf-btn");
-    const cards = document.querySelectorAll(".pf-card");
-    filterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const filter = btn.getAttribute("data-filter");
-        filterBtns.forEach(b => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        cards.forEach(card => {
-          card.style.display = (filter === "all" || card.dataset.category === filter) ? "block" : "none";
-        });
-      });
-    });
-  </script>
 </body>
 </html>
