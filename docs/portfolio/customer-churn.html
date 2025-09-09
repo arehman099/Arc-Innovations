@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Churn Prediction — End-to-End Case Study | Arc Innovations</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="End-to-end ML project for churn prediction: data prep, EDA, modeling (LogReg, RF, XGBoost), evaluation, and business insights."/>
+</head>
+<body class="article-body">
+  <!-- Top progress bar -->
+  <div id="read-progress"></div>
+
+  <!-- Minimal Nav (cleaned: only back link) -->
+  <nav class="article-nav">
+    <ul>
+      <li><a href="portfolio.html">← Portfolio</a></li>
+    </ul>
+  </nav>
+
+  <main class="article-wrap">
+    <!-- Title Block -->
+    <header class="article-header">
+      <h1>Customer Churn Prediction with Machine Learning</h1>
+      <p class="article-subtitle">An end-to-end pipeline: data preparation, exploratory analysis, modeling, evaluation, and business integration.</p>
+      <div class="article-meta">
+        <span>Arc Innovations</span> ·
+        <span>2025</span> ·
+        <span>Python · Scikit-learn · XGBoost · Pandas</span>
+      </div>
+    </header>
+
+    <!-- Cover Image -->
+    <figure class="article-figure">
+      <img src="Picture/churn-dashboard.png" alt="Customer churn model ROC curve and evaluation overview">
+      <figcaption>Figure 1 — Conceptual overview of churn scoring and BI consumption (ROC shown).</figcaption>
+    </figure>
+
+    <!-- Intro -->
+    <section>
+      <p>
+        Customer churn erodes recurring revenue. This case study demonstrates how we built an interpretable
+        machine-learning workflow to identify at-risk customers early and surface drivers behind churn, enabling
+        proactive retention campaigns.
+      </p>
+    </section>
+
+    <!-- TL;DR -->
+    <aside class="callout">
+      <strong>TL;DR:</strong> Using a public telecom dataset (~7K rows, 21 features), we cleaned and encoded data,
+      explored churn patterns, trained baseline (LogReg) and tree-based models (RF, XGBoost), and achieved
+      <strong>ROC-AUC ≈ 0.86</strong> with <strong>high recall</strong> on churners. Outputs are designed to plug into BI/CRM.
+    </aside>
+
+    <!-- Dataset -->
+    <section>
+      <h2>Dataset</h2>
+      <p>
+        We used a public telecom churn dataset with demographics, account, and service usage information. The target
+        label is <code>Churn</code> (Yes/No). The data is categorical-heavy (e.g., <code>Contract</code>,
+        <code>InternetService</code>) with a churn rate of ~25–30%.
+      </p>
+      <ul>
+        <li>Records: ~7,043 · Features: 21</li>
+        <li>Split: 80/20 train–test with stratification</li>
+        <li>Imbalance handled via class weights / thresholding</li>
+      </ul>
+    </section>
+
+    <!-- Data Preparation -->
+    <section>
+      <h2>Data Preparation</h2>
+      <ul>
+        <li>Standardized binary fields (<code>Yes/No</code> → 1/0), coerced numeric types (e.g., <code>TotalCharges</code>).</li>
+        <li>One-hot encoding for multi-class categoricals (<code>Contract</code>, <code>InternetService</code>).</li>
+        <li>Scaled numeric features (<code>tenure</code>, <code>MonthlyCharges</code>).</li>
+        <li>Stratified split to preserve churn ratio across train–test.</li>
+      </ul>
+      <pre class="code-block"><code># Sketch of preprocessing
+num_cols = ["tenure", "MonthlyCharges", "TotalCharges"]
+cat_cols = ["Contract", "InternetService", "PaymentMethod", "PaperlessBilling"]
+
+# impute/scale numerics, one-hot encode categoricals
+preprocess = ColumnTransformer(
+    transformers=[
+        ("num", Pipeline([("imputer", SimpleImputer()), ("scaler", StandardScaler())]), num_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols)
+    ]
+)</code></pre>
+    </section>
+
+    <!-- EDA -->
+    <section id="eda">
+      <h2>Exploratory Analysis (EDA)</h2>
+      <p>
+        We observed higher churn among month-to-month contracts and low-tenure customers. Increased
+        <code>MonthlyCharges</code> slightly raised churn propensity. Paperless billing showed notable patterns.
+      </p>
+      <figure class="article-figure">
+        <img src="Picture/eda-bar-charts.png" alt="EDA bar charts and distributions">
+        <figcaption>Figure 2 — EDA views: churn by contract type, tenure distribution, and monthly charges.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Modeling -->
+    <section>
+      <h2>Modeling</h2>
+      <p>We compared baseline and tree-based models, then tuned XGBoost:</p>
+      <ul>
+        <li>Baselines: Logistic Regression, Random Forest</li>
+        <li>Best: XGBoost with class weighting & hyperparameter search (depth, estimators, learning rate)</li>
+        <li>Metrics: Accuracy, Precision/Recall/F1, ROC-AUC; business goal prioritized recall</li>
+      </ul>
+      <pre class="code-block"><code># Sketch of pipeline & tuning
+model = XGBClassifier(eval_metric="logloss", scale_pos_weight=pos_weight)
+clf = Pipeline([("prep", preprocess), ("model", model)])
+
+params = {
+    "model__n_estimators": [200, 400],
+    "model__max_depth": [4, 6],
+    "model__learning_rate": [0.05, 0.1]
+}
+grid = GridSearchCV(clf, param_grid=params, scoring="roc_auc", cv=5, n_jobs=-1)
+grid.fit(X_train, y_train)
+best = grid.best_estimator_</code></pre>
+    </section>
+
+    <!-- Evaluation -->
+    <section id="evaluation">
+      <h2>Evaluation</h2>
+      <div class="stats">
+        <div class="stat"><div class="stat__value">0.86</div><div class="stat__label">ROC-AUC</div></div>
+        <div class="stat"><div class="stat__value">82%</div><div class="stat__label">Accuracy</div></div>
+        <div class="stat"><div class="stat__value">High</div><div class="stat__label">Recall (Churn)</div></div>
+      </div>
+      <p>
+        Threshold selection favored recall to reduce missed churners. Feature importance highlighted
+        <em>Contract</em>, <em>Tenure</em>, and <em>MonthlyCharges</em> as key drivers. SHAP can be added for
+        instance-level explanations.
+      </p>
+      <figure class="article-figure">
+        <img src="Picture/feature-importance.png" alt="Feature importance bar chart">
+        <figcaption>Figure 3 — Feature importance (tree-based model).</figcaption>
+      </figure>
+    </section>
+
+    <!-- Output / Handoff -->
+    <section>
+      <h2>Scoring Output</h2>
+      <p>
+        We produce a BI/CRM-ready table with probabilities, risk bands, and top factors, enabling targeted retention:
+      </p>
+      <pre class="code-block"><code>CustomerID, ChurnProbability, RiskBand, TopFactors
+7590-VHVEG, 0.81, High, Contract:Month-to-month; Tenure:Low; MonthlyCharges:High
+5575-GNVDE, 0.65, Medium, Contract:Month-to-month; PaperlessBilling:Yes
+3668-QPYBK, 0.22, Low, Contract:One year; Tenure:High</code></pre>
+    </section>
+
+    <!-- Tech + Next Steps -->
+    <section>
+      <h2>Tech Stack</h2>
+      <p>Python · Pandas · Scikit-learn · XGBoost · Matplotlib · (Optional) SHAP · Power BI (consumption)</p>
+    </section>
+
+    <section>
+      <h2>Next Steps</h2>
+      <ul>
+        <li>Deploy as a lightweight API for real-time scoring.</li>
+        <li>Schedule monthly retraining & drift monitoring.</li>
+        <li>Integrate with CRM to automate retention workflows.</li>
+      </ul>
+    </section>
+
+    <hr class="soft-divider"/>
+
+    <!-- CTA -->
+    <div class="article-cta">
+      <a class="cta-button" href="portfolio.html">← Back to Portfolio</a>
+      <a class="cta-outline" href="mailto:info@arcinnovations.it">Discuss a similar project</a>
+    </div>
+  </main>
+
+  <footer class="article-footer">
+    <p>&copy; 2025 Arc Innovations | All rights reserved. | P.IVA: 03095200352</p>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      bar.style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
