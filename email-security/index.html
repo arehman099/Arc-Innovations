@@ -5,20 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Enterprise Email Security Implementation | Arc Innovations</title>
 
-  <!-- Site CSS (note: one level up) -->
+  <!-- site stylesheet (one level up from /email-security/) -->
   <link rel="stylesheet" href="../style.css"/>
 
-  <!-- Meta -->
   <meta name="description" content="Automated quarantine digest, threat intel enrichment, and live KPIs built with Microsoft 365, Power Automate, and a lightweight dashboard."/>
+
+  <!-- Page-scoped helpers so the header matches the Churn case study and sections look polished -->
+  <style>
+    /* Make sure the back link renders even if .back-link wasn't in your CSS yet */
+    .back-link{display:block;text-align:center;margin:1.2rem auto .6rem;font-size:2.1rem;color:#222;}
+    .back-link:hover{color:#18d872;}
+
+    /* Pro layout containers for the sections below the header */
+    .es-container{max-width:1100px;margin:0 auto;padding:0 16px;}
+    .es-grid{display:grid;gap:16px}
+    @media(min-width:900px){.es-grid-2{grid-template-columns:1fr 1fr}}
+    .es-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:22px}
+    .es-figure{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:14px}
+    .es-pills .tag{margin:6px 6px 0 0}
+
+    .es-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .es-kpi{background:#fff;border:1px solid #eee;border-radius:12px;padding:14px;text-align:center}
+    .es-kpi .value{font-weight:700;font-size:1.25rem;color:#18d872}
+
+    .es-screenshots figure{margin:18px 0}
+    .es-screenshots img{width:100%;height:auto;border-radius:12px}
+  </style>
 </head>
+
 <body class="article-body">
-  <!-- Reading progress (uses existing styles) -->
+  <!-- reading progress (same component used on Churn) -->
   <div id="read-progress"></div>
 
-  <!-- Centered back link — exactly like the Churn page -->
+  <!-- Top header EXACTLY like the Churn page -->
   <a class="back-link" href="../portfolio.html">← Portfolio</a>
-
-  <!-- Article content wrapper -->
   <main class="article-wrap">
     <header class="article-header">
       <h1>Enterprise Email Security Implementation</h1>
@@ -27,43 +47,120 @@
       </p>
       <p class="article-meta">Arc Innovations · 2025 · Power Automate · Microsoft Graph · Security · Analytics</p>
     </header>
+  </main>
 
-    <section class="callout">
-      <strong>TL;DR:</strong> We built a secure pipeline that ingests quarantine items, enriches with sender/IP intel,
-      and publishes a daily <em>Quarantine Digest</em> plus a lightweight dashboard for trends and approvals.
-    </section>
-
-    <section>
+  <!-- Professional content (kept + polished) -->
+  <section class="es-container es-grid es-grid-2" aria-label="overview-and-architecture">
+    <div class="es-card">
       <h2>Overview</h2>
       <p>
-        The solution fetches email threat data (spam, phishing, malware) from Microsoft Defender for Office 365 / Graph,
-        applies enrichment and allow/deny rules, and generates a digest for end users and admins. Actions are logged with
-        correlation IDs for audit.
+        We implemented a secure pipeline that ingests email threat data (spam, phishing, malware),
+        enriches it with sender/IP intelligence, and generates an automated <em>Quarantine Digest</em>
+        for end users and admins. A lightweight HTML dashboard surfaces trends, top senders, and
+        release/keep actions. All actions are logged with correlation IDs for audit.
       </p>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat__value">↓ 42%</div>
-          <div class="stat__label">Mean time to release</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value">↑ 31%</div>
-          <div class="stat__label">Self-service actions</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value">99.9%</div>
-          <div class="stat__label">Action audit coverage</div>
-        </div>
+      <div class="es-pills">
+        <span class="tag">Microsoft Defender for O365</span>
+        <span class="tag">Graph/Exchange Online</span>
+        <span class="tag">Power Automate</span>
+        <span class="tag">PowerShell/Python</span>
+        <span class="tag">GitHub Pages</span>
       </div>
-    </section>
+    </div>
 
-    <section class="article-figure">
-      <h2>Architecture (simplified)</h2>
-      <!-- Inline SVG keeps the diagram crisp without external assets -->
-      <figure class="article-figure">
-        <img src="thumbnail.png" alt="Email security icon (visual identity)" loading="lazy" />
-        <figcaption>Visual identity for the Email Security project.</figcaption>
-      </figure>
+    <div class="es-figure">
+      <h3 class="article-subtitle" style="margin-bottom:10px;">Architecture (simplified)</h3>
+      <!-- simple inline diagram (kept lightweight) -->
+      <svg viewBox="0 0 820 270" width="100%" role="img" aria-label="Email security architecture">
+        <defs>
+          <style>
+            .box{fill:#fff;stroke:#cfd8dc;stroke-width:1.2}
+            .t{font:700 12px system-ui, -apple-system, Segoe UI, Roboto, Arial}
+            .s{font:400 12px system-ui, -apple-system, Segoe UI, Roboto, Arial}
+            .ln{stroke:#90a4ae;stroke-width:1.2;marker-end:url(#a)}
+          </style>
+          <marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 z" fill="#90a4ae"/>
+          </marker>
+        </defs>
+        <rect class="box" x="20" y="20" width="200" height="70" rx="10"/>
+        <text class="t" x="30" y="40">Email Security Sources</text>
+        <text class="s" x="30" y="60">Defender for O365, EOP, Graph</text>
 
-      <figure class="article-figure">
-        <!-- If you prefer, swap this for your previous inline SVG diagram -->
-        <img src="digest.png" alt="Microsoft
+        <line class="ln" x1="220" y1="55" x2="330" y2="55"/>
+        <rect class="box" x="330" y="20" width="180" height="70" rx="10"/>
+        <text class="t" x="340" y="40">Ingestion Flow</text>
+        <text class="s" x="340" y="60">Power Automate / Script</text>
+
+        <line class="ln" x1="510" y1="55" x2="620" y2="55"/>
+        <rect class="box" x="620" y="20" width="180" height="70" rx="10"/>
+        <text class="t" x="630" y="40">Enrichment</text>
+        <text class="s" x="630" y="60">Sender/IP intel, rules</text>
+
+        <line class="ln" x1="420" y1="90" x2="420" y2="165"/>
+        <rect class="box" x="330" y="165" width="180" height="70" rx="10"/>
+        <text class="t" x="340" y="185">Quarantine Digest</text>
+        <text class="s" x="340" y="205">HTML email & dashboard</text>
+
+        <line class="ln" x1="710" y1="90" x2="710" y2="165"/>
+        <rect class="box" x="620" y="165" width="180" height="70" rx="10"/>
+        <text class="t" x="630" y="185">Storage & Logs</text>
+        <text class="s" x="630" y="205">CSV/JSON + GitHub Pages</text>
+      </svg>
+      <p class="article-subtitle" style="margin-top:8px; color:#666;">
+        Pluggable: add VirusTotal/IPQualityScore, SIEM, or custom allow/deny logic.
+      </p>
+    </div>
+  </section>
+
+  <section class="es-container" aria-label="results">
+    <h2>Results</h2>
+    <div class="es-kpis">
+      <div class="es-kpi"><div class="value">↓ 42%</div><div class="article-subtitle">Mean time to release</div></div>
+      <div class="es-kpi"><div class="value">↑ 31%</div><div class="article-subtitle">User self-service actions</div></div>
+      <div class="es-kpi"><div class="value">99.9%</div><div class="article-subtitle">Action audit coverage</div></div>
+      <div class="es-kpi"><div class="value">0</div><div class="article-subtitle">Unlogged releases</div></div>
+    </div>
+  </section>
+
+  <section class="es-container" aria-label="tech-stack">
+    <h2>Tech Stack</h2>
+    <pre class="code-block">Microsoft Defender for Office 365
+Exchange Online / Graph API
+Power Automate (flows for ingestion, enrichment, digest build, artifact publish)
+Optional enrichment via PowerShell/Python
+Artifacts hosted on GitHub Pages (CSV/JSON)</pre>
+  </section>
+
+  <section class="es-container es-screenshots" aria-label="screenshots">
+    <h2>Screenshots</h2>
+
+    <!-- 1) Quarantine view -->
+    <figure class="article-figure">
+      <img src="digest.png" alt="Quarantine email list in Microsoft 365" loading="lazy">
+      <figcaption>Admin quarantine view (data source for the daily Digest).</figcaption>
+    </figure>
+
+    <!-- 2) Dashboard -->
+    <figure class="article-figure">
+      <img src="threat-dashboard.png" alt="Threat analytics dashboard" loading="lazy">
+      <figcaption>Threat analytics dashboard with trends and KPIs.</figcaption>
+    </figure>
+  </section>
+
+  <section class="es-container article-cta">
+    <a class="cta-button" href="../portfolio.html">← Back to Portfolio</a>
+  </section>
+
+  <div class="article-footer">© Arc Innovations — Security Automation</div>
+
+  <!-- Tiny scroll progress (same as Churn) -->
+  <script>
+    (function(){
+      const bar=document.getElementById('read-progress'); if(!bar) return;
+      const onScroll=()=>{const h=document.documentElement,b=document.body,st=h.scrollTop||b.scrollTop,sh=h.scrollHeight||b.scrollHeight,ch=h.clientHeight;bar.style.width=Math.min(100,Math.max(0,(st/(sh-ch))*100))+'%';};
+      document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    })();
+  </script>
+</body>
+</html>
