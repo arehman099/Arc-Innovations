@@ -1,174 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enterprise Email Security — Arc Innovations</title>
-  <meta name="description" content="End-to-end email security implementation: automated quarantine digest, threat analytics, and Power Platform orchestration."/>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/style.css"/>
-  <style>
-    /* minimal helpers if your global CSS is absent */
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .hero{display:grid;gap:16px;padding:32px 0}
-    .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#eef}
-    .grid{display:grid;gap:16px}
-    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
-    .card{border:1px solid #eee;border-radius:14px;padding:18px}
-    .muted{color:#666}
-    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .kpi{border:1px solid #eee;border-radius:10px;padding:14px;text-align:center}
-    .pill{display:inline-block;background:#f6f6f6;border:1px solid #eee;border-radius:999px;padding:6px 10px;margin:4px 6px 0 0}
-    .code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;background:#fafafa;border:1px solid #eee;border-radius:10px;padding:12px;display:block;white-space:pre-wrap}
-    .cta{margin-top:18px;display:inline-block;background:black;color:white;padding:10px 16px;border-radius:10px;text-decoration:none}
-    .section{margin:28px 0}
-    .figure{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:12px}
-    .small{font-size:.92rem}
-  </style>
+  <title>Enterprise Email Security Implementation | Arc Innovations</title>
+
+  <!-- Site CSS (note: one level up) -->
+  <link rel="stylesheet" href="../style.css"/>
+
+  <!-- Meta -->
+  <meta name="description" content="Automated quarantine digest, threat intel enrichment, and live KPIs built with Microsoft 365, Power Automate, and a lightweight dashboard."/>
 </head>
-<body>
-  <header class="container hero">
-    <span class="badge">Security • Automation • Analytics</span>
-    <h1>Enterprise Email Security Implementation</h1>
-    <p class="muted">Automated quarantine digest, threat intel enrichment, and live KPIs built with Microsoft 365, Power Automate, and a lightweight dashboard.</p>
-    <a class="cta" href="/portfolio/">← Back to Portfolio</a>
-  </header>
+<body class="article-body">
+  <!-- Reading progress (uses existing styles) -->
+  <div id="read-progress"></div>
 
-  <main class="container">
-    <section class="section grid grid-2">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          We implemented a secure pipeline that ingests email threat data (spam, phishing, malware),
-          enriches it with sender/IP intelligence, and generates an automated <em>Quarantine Digest</em>
-          for end users and admins. A compact HTML dashboard provides trends, top senders, and release/keep actions.
-        </p>
-        <div>
-          <span class="pill">Microsoft Defender for Office 365</span>
-          <span class="pill">Graph/Exchange Online</span>
-          <span class="pill">Power Automate</span>
-          <span class="pill">PowerShell/Python</span>
-          <span class="pill">GitHub Pages</span>
-        </div>
-      </div>
-      <div class="figure">
-        <h3 class="muted">Architecture (simplified)</h3>
-        <!-- Inline SVG so it renders without external images -->
-        <svg viewBox="0 0 820 320" width="100%" role="img" aria-label="Architecture diagram">
-          <defs>
-            <style>
-              .box{fill:#ffffff;stroke:#cfd8dc;stroke-width:1.2}
-              .title{font:700 12px sans-serif}
-              .text{font:400 12px sans-serif}
-              .line{stroke:#90a4ae;stroke-width:1.2;marker-end:url(#a)}
-            </style>
-            <marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L6,3 z" fill="#90a4ae"/>
-            </marker>
-          </defs>
-          <!-- Sources -->
-          <rect class="box" x="20" y="30" width="200" height="70" rx="10"/>
-          <text class="title" x="30" y="50">Email Security Sources</text>
-          <text class="text" x="30" y="70">Defender for O365, EOP, Graph</text>
+  <!-- Centered back link — exactly like the Churn page -->
+  <a class="back-link" href="../portfolio.html">← Portfolio</a>
 
-          <!-- Flow -->
-          <line class="line" x1="220" y1="65" x2="330" y2="65"/>
-          <rect class="box" x="330" y="30" width="180" height="70" rx="10"/>
-          <text class="title" x="340" y="50">Ingestion Flow</text>
-          <text class="text" x="340" y="70">Power Automate / Script</text>
-
-          <line class="line" x1="510" y1="65" x2="620" y2="65"/>
-          <rect class="box" x="620" y="30" width="180" height="70" rx="10"/>
-          <text class="title" x="630" y="50">Enrichment</text>
-          <text class="text" x="630" y="70">Sender/IP intel, rules</text>
-
-          <!-- Digest path -->
-          <line class="line" x1="420" y1="100" x2="420" y2="170"/>
-          <rect class="box" x="330" y="170" width="180" height="70" rx="10"/>
-          <text class="title" x="340" y="190">Quarantine Digest</text>
-          <text class="text" x="340" y="210">HTML email & dashboard</text>
-
-          <!-- Storage / Logs -->
-          <line class="line" x1="710" y1="100" x2="710" y2="170"/>
-          <rect class="box" x="620" y="170" width="180" height="70" rx="10"/>
-          <text class="title" x="630" y="190">Storage & Logs</text>
-          <text class="text" x="630" y="210">CSV/JSON + GitHub Pages</text>
-        </svg>
-        <p class="small muted">Pluggable: add VirusTotal/IPQualityScore, SIEM, or custom allow/deny logic.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Key Capabilities</h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Automated Digest</h3>
-          <p>Daily (or on-demand) HTML digest to users/admins with release/keep links and message metadata.</p>
-        </div>
-        <div class="card">
-          <h3>Threat Analytics</h3>
-          <p>Trends by day, source, sender domain, and policy action. CSV/JSON artifacts for audit.</p>
-        </div>
-        <div class="card">
-          <h3>Power Platform Orchestration</h3>
-          <p>Flows fetch quarantine items via Microsoft Graph/Defender APIs, enrich, then render a dashboard.</p>
-        </div>
-        <div class="card">
-          <h3>Secure Actions</h3>
-          <p>Optional approval before release; logging with correlation IDs.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Results (sample KPIs)</h2>
-      <div class="kpis">
-        <div class="kpi"><div class="title">↓ 42%</div><div class="muted small">Mean time to release</div></div>
-        <div class="kpi"><div class="title">↑ 31%</div><div class="muted small">User self-service actions</div></div>
-        <div class="kpi"><div class="title">99.9%</div><div class="muted small">Action audit coverage</div></div>
-        <div class="kpi"><div class="title">0</div><div class="muted small">Unlogged releases</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Tech Stack</h2>
-      <p>
-        Microsoft Defender for Office 365, Exchange Online (Graph), Power Automate,
-        optionally Python/PowerShell for enrichment, JSON/CSV artifacts hosted on GitHub Pages.
+  <!-- Article content wrapper -->
+  <main class="article-wrap">
+    <header class="article-header">
+      <h1>Enterprise Email Security Implementation</h1>
+      <p class="article-subtitle">
+        Automated quarantine digest, threat intel enrichment, and live KPIs for Microsoft 365.
       </p>
-      <pre class="code">/flows
-  - GetQuarantineItems
-  - EnrichThreatIntel
-  - BuildQuarantineDigest (HTML)
-  - PublishArtifacts (CSV/JSON)
-      </pre>
+      <p class="article-meta">Arc Innovations · 2025 · Power Automate · Microsoft Graph · Security · Analytics</p>
+    </header>
+
+    <section class="callout">
+      <strong>TL;DR:</strong> We built a secure pipeline that ingests quarantine items, enriches with sender/IP intel,
+      and publishes a daily <em>Quarantine Digest</em> plus a lightweight dashboard for trends and approvals.
     </section>
 
- <section class="section">
-  <h2>Screenshots</h2>
-  <div class="grid" style="gap:24px;">
-    <figure class="figure">
-      <img src="digest.png" alt="Quarantine email list in Microsoft 365" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;">
-      <figcaption class="small muted">Quarantine email view (data source for digest)</figcaption>
-    </figure>
-    <figure class="figure">
-      <img src="threat-dashboard.png" alt="Threat analytics dashboard" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;">
-      <figcaption class="small muted">Threat analytics dashboard showing trends and KPIs</figcaption>
-    </figure>
-  </div>
-</section>
-
-
-
-
-    <section class="section">
-      <a class="cta" href="https://github.com/" target="_blank" rel="noopener">View Source (repo link)</a>
+    <section>
+      <h2>Overview</h2>
+      <p>
+        The solution fetches email threat data (spam, phishing, malware) from Microsoft Defender for Office 365 / Graph,
+        applies enrichment and allow/deny rules, and generates a digest for end users and admins. Actions are logged with
+        correlation IDs for audit.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__value">↓ 42%</div>
+          <div class="stat__label">Mean time to release</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">↑ 31%</div>
+          <div class="stat__label">Self-service actions</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value">99.9%</div>
+          <div class="stat__label">Action audit coverage</div>
+        </div>
+      </div>
     </section>
-  </main>
 
-  <footer class="container muted small">
-    © Arc Innovations — Security Automation Portfolio
-  </footer>
-</body>
-</html>
+    <section class="article-figure">
+      <h2>Architecture (simplified)</h2>
+      <!-- Inline SVG keeps the diagram crisp without external assets -->
+      <figure class="article-figure">
+        <img src="thumbnail.png" alt="Email security icon (visual identity)" loading="lazy" />
+        <figcaption>Visual identity for the Email Security project.</figcaption>
+      </figure>
+
+      <figure class="article-figure">
+        <!-- If you prefer, swap this for your previous inline SVG diagram -->
+        <img src="digest.png" alt="Microsoft
