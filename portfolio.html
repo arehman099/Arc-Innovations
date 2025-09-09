@@ -5,20 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | Arc Innovations</title>
 
+  <!-- Primary CSS -->
   <link rel="stylesheet" href="style.css"/>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
 
+  <!-- SEO -->
   <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study and enterprise email security implementation."/>
   <link rel="canonical" href="https://www.arcinnovations.it/portfolio.html"/>
 
+  <!-- Open Graph -->
   <meta property="og:title" content="Portfolio | Arc Innovations">
   <meta property="og:description" content="Selected work in AI & analytics, including churn prediction and enterprise email security.">
   <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
   <meta property="og:image" content="https://www.arcinnovations.it/Picture/churn-demo.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,15 +55,9 @@
     ]
   }
   </script>
-
-  <style>
-    .pf-card { display:block; text-decoration:none; color:inherit; }
-    .pf-card:focus-visible { outline: 3px solid #18d872; outline-offset: 3px; }
-    @media (max-width: 600px){ .portfolio-hero { margin-bottom: 1rem; } }
-    .pf-card__media img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-  </style>
 </head>
 <body>
+  <!-- Nav -->
   <nav>
     <ul>
       <li><a href="index.html#home">Home</a></li>
@@ -69,6 +68,7 @@
     </ul>
   </nav>
 
+  <!-- Hero -->
   <header class="portfolio-hero">
     <div class="portfolio-hero__overlay"></div>
     <div class="portfolio-hero__content">
@@ -77,10 +77,11 @@
     </div>
   </header>
 
+  <!-- Portfolio Grid -->
   <section class="portfolio-wrap">
     <div class="portfolio-grid">
 
-      <!-- CARD 1 -->
+      <!-- CARD 1: Churn -->
       <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
         <div class="pf-card__media">
           <img
@@ -106,10 +107,11 @@
         </div>
       </a>
 
-      <!-- CARD 2 -->
+      <!-- CARD 2: Email Security (zoom the icon to counter transparent padding) -->
       <a class="pf-card" href="email-security/index.html" data-category="security" aria-label="Open Enterprise Email Security project">
-        <div class="pf-card__media">
+        <div class="pf-card__media pf-card__media--contain">
           <img
+            class="pf-thumb--email"
             src="email-security/thumbnail.png"
             alt="Enterprise Email Security project thumbnail"
             width="1200" height="675"
@@ -135,6 +137,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
