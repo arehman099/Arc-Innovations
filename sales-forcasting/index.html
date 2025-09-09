@@ -5,29 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sales Forecasting (Time-Series) | Arc Innovations</title>
 
-  <link rel="stylesheet" href="../style.css?v=20250909a"/>
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="../style.css?v=20250910a"/>
 
+  <!-- SEO -->
   <meta name="description" content="End-to-end time-series forecasting to predict weekly sales; feature engineering, rolling cross-validation, and a Power BI dashboard."/>
   <link rel="canonical" href="https://www.arcinnovations.it/sales-forecasting/index.html"/>
 
+  <!-- Social -->
   <meta property="og:title" content="Sales Forecasting (Time-Series) | Arc Innovations">
   <meta property="og:description" content="Predict weekly sales across products and locations. MAPE/WAPE tracked, dashboards in Power BI.">
   <meta property="og:url" content="https://www.arcinnovations.it/sales-forecasting/index.html">
   <meta property="og:image" content="https://www.arcinnovations.it/sales-forecasting/thumbnail.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://www.arcinnovations.it/portfolio.html"
-    },{
-      "@type": "ListItem", "position": 2, "name": "Sales Forecasting", "item": "https://www.arcinnovations.it/sales-forecasting/index.html"
-    }]
-  }
-  </script>
-
+  <!-- Small page-only helpers -->
   <style>
     .sf-pillbox .tag{margin:6px 6px 0 0}
     .sf-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -38,8 +30,10 @@
   </style>
 </head>
 <body class="article-body">
+  <!-- reading progress -->
   <div id="read-progress"></div>
 
+  <!-- back to portfolio (matches other case studies) -->
   <nav class="article-nav">
     <ul><li><a href="../portfolio.html">← Portfolio</a></li></ul>
   </nav>
@@ -50,14 +44,19 @@
       <p class="article-subtitle">
         Predict weekly sales across products & locations using classical + ML models; enable inventory and promo planning.
       </p>
-      <p class="article-meta">Arc Innovations · 2025 · Python · Prophet/ARIMA · XGBoost · Power BI</p>
+      <p class="article-meta">Arc Innovations · 2025 · Python · Prophet/SARIMA · XGBoost · Power BI</p>
     </header>
+
+    <figure class="article-figure">
+      <img src="dashboard.png" alt="Power BI sales forecasting dashboard with forecast and actuals">
+      <figcaption>Forecast dashboard: point forecasts, intervals, and error tracking (BI).</figcaption>
+    </figure>
 
     <section>
       <h2>Overview</h2>
       <p>
         We built a forecasting pipeline that learns seasonality, promotions, holidays, and price elasticity to predict
-        weekly sales per product-location. A Power BI dashboard visualizes forecasts, uncertainty, and bias, helping
+        weekly sales per product–location. A Power BI dashboard visualizes forecasts, uncertainty, and bias, helping
         planners align inventory and campaigns.
       </p>
       <div class="sf-pillbox">
@@ -71,9 +70,9 @@
     <section>
       <h2>Data</h2>
       <ul>
-        <li>Grain: weekly per <em>product × store</em> (3–5 years history)</li>
+        <li>Grain: weekly <em>product × store</em> (3–5 years history)</li>
         <li>Signals: calendar, holidays, promos, prices, weather, stockouts</li>
-        <li>Targets: sales units / revenue</li>
+        <li>Targets: units and/or revenue; forecast horizon typically 8–12 weeks</li>
       </ul>
     </section>
 
@@ -81,21 +80,30 @@
       <h2>Approach</h2>
       <ul>
         <li><strong>Baselines:</strong> Naïve, seasonal naïve, ETS.</li>
-        <li><strong>Classical:</strong> SARIMA / Prophet for strong seasonality.</li>
+        <li><strong>Classical:</strong> SARIMA / Prophet for strong weekly/annual seasonality.</li>
         <li><strong>ML:</strong> Gradient boosting (XGBoost) with lags, rolling means, promo/price features.</li>
         <li><strong>Validation:</strong> Rolling-origin time-series CV; metrics: MAPE/WAPE/sMAPE/RMSE.</li>
-        <li><strong>Ensemble:</strong> Blend classical+ML per series using validation rank.</li>
+        <li><strong>Ensemble:</strong> Blend classical + ML per series based on validation rank.</li>
       </ul>
 
+<pre class="code-block"><code># sketch: lag/window features for ML
+def add_lag_feats(df, lags=(1,2,3,4,5,6,7,14,28), windows=(7,28)):
+    for L in lags:
+        df[f"y_lag_{L}"] = df.groupby(["store","sku"])["y"].shift(L)
+    for W in windows:
+        df[f"y_ma_{W}"]  = (df.groupby(["store","sku"])["y"]
+                             .shift(1).rolling(W, min_periods=1).mean())
+    return df
+</code></pre>
+
 <pre class="code-block"><code># sketch: rolling-origin cross-validation
-def rolling_cv(train_df, n_folds=4, horizon=8):
+def rolling_cv(df, n_folds=4, horizon=8):
     folds = []
-    start = train_df['ds'].min()
-    end   = train_df['ds'].max()
+    end = df["ds"].max()
     for k in range(n_folds):
         cutoff = end - pd.Timedelta(weeks=(n_folds-k)*horizon)
-        tr = train_df[train_df['ds'] <= cutoff]
-        va = train_df[(train_df['ds'] > cutoff) & (train_df['ds'] <= cutoff + pd.Timedelta(weeks=horizon))]
+        tr = df[df["ds"] <= cutoff]
+        va = df[(df["ds"] > cutoff) & (df["ds"] <= cutoff + pd.Timedelta(weeks=horizon))]
         folds.append((tr, va))
     return folds
 </code></pre>
@@ -108,13 +116,8 @@ def rolling_cv(train_df, n_folds=4, horizon=8):
     </section>
 
     <figure class="article-figure">
-      <img src="dashboard.png" alt="Power BI sales forecasting dashboard with forecast and actuals">
-      <figcaption>Forecast dashboard: point forecasts, intervals, and error tracking (BI).</figcaption>
-    </figure>
-
-    <figure class="article-figure">
       <img src="residuals.png" alt="Residual analysis and seasonal decomposition">
-      <figcaption>Residuals & decomposition: checking bias and seasonality remaining.</figcaption>
+      <figcaption>Residuals & decomposition: checking bias and remaining seasonality.</figcaption>
     </figure>
 
     <section class="sf-figure sf-arch">
