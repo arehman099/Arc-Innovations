@@ -212,18 +212,31 @@ nav ul li a.active { color: #ff6f61; border-bottom-color: #ff6f61; }
 }
 @media (max-width: 900px) { .pf-card { grid-column: span 12; } } /* 1 per row */
 
-/* Card contents */
-.pf-card__media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #fff; }
-.pf-card__media img {
+/* Card contents — make thumbnails fill the banner area like the churn card */
+.pf-card__media{
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: #fff;
+  border-radius: 12px;
+}
+.pf-card__media img{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* show the full picture, no cropping */
-  padding: 10px;         /* graceful letterboxing */
-  border-radius: 8px;
-  transform: none;       /* prevent zooming */
+  object-fit: cover;     /* fills like a hero/banner */
+  border-radius: 12px;
+  transform: none;
   transition: opacity .3s ease;
 }
-/* keep full image visible even on hover */
+/* Optional modifier: if you ever want an image to fit fully without crop, add class "pf-card__media--contain" */
+.pf-card__media--contain img{
+  object-fit: contain;
+  padding: 10px;
+  background: #fff;
+}
+/* keep image steady on hover */
 .pf-card:hover .pf-card__media img { transform: none; }
 
 .pf-card__body { padding: 1.25rem 1.25rem 1.4rem; }
