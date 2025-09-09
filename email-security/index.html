@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Enterprise Email Security Implementation | Arc Innovations</title>
 
-  <!-- Site CSS (note: this page is in /email-security/) -->
+  <!-- Site CSS (this page is in /email-security/) -->
   <link rel="stylesheet" href="../style.css"/>
 
   <!-- SEO -->
@@ -38,11 +38,8 @@
   }
   </script>
 
-  <!-- Page-only layout helpers (keep light) -->
+  <!-- Page-only helpers for layout blocks -->
   <style>
-    .back-link{display:block;text-align:center;margin:1.2rem auto .6rem;font-size:2.1rem;color:#222;}
-    .back-link:hover{color:#18d872;}
-
     .es-container{max-width:1100px;margin:0 auto;padding:0 16px;}
     .es-grid{display:grid;gap:16px}
     @media(min-width:900px){.es-grid-2{grid-template-columns:1fr 1fr}}
@@ -61,8 +58,13 @@
   <!-- Reading progress -->
   <div id="read-progress"></div>
 
-  <!-- Header matching Churn -->
-  <a class="back-link" href="../portfolio.html">← Portfolio</a>
+  <!-- Header (now matches Churn exactly) -->
+  <nav class="article-nav">
+    <ul>
+      <li><a href="../portfolio.html">← Portfolio</a></li>
+    </ul>
+  </nav>
+
   <main class="article-wrap">
     <header class="article-header">
       <h1>Enterprise Email Security Implementation</h1>
@@ -158,13 +160,11 @@ Artifacts hosted on GitHub Pages (CSV/JSON)</pre>
   <section class="es-container es-screenshots" aria-label="screenshots">
     <h2>Screenshots</h2>
 
-    <!-- 1) Quarantine view -->
     <figure class="article-figure">
       <img src="digest.png" alt="Quarantine email list in Microsoft 365" loading="lazy">
       <figcaption>Admin quarantine view (data source for the daily Digest).</figcaption>
     </figure>
 
-    <!-- 2) Dashboard -->
     <figure class="article-figure">
       <img src="threat-dashboard.png" alt="Threat analytics dashboard" loading="lazy">
       <figcaption>Threat analytics dashboard with trends and KPIs.</figcaption>
@@ -177,7 +177,6 @@ Artifacts hosted on GitHub Pages (CSV/JSON)</pre>
 
   <div class="article-footer">© Arc Innovations — Security Automation</div>
 
-  <!-- Tiny scroll progress -->
   <script>
     (function(){
       const bar=document.getElementById('read-progress'); if(!bar) return;
