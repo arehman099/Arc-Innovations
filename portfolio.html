@@ -13,14 +13,14 @@
   <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
 
   <!-- SEO -->
-  <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study, sales forecasting, and enterprise email security implementation."/>
+  <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics: churn prediction, sales forecasting, and enterprise email security."/>
   <link rel="canonical" href="https://www.arcinnovations.it/portfolio.html"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Portfolio | Arc Innovations">
   <meta property="og:description" content="Selected work in AI & analytics, including churn prediction, sales forecasting, and enterprise email security.">
   <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
-  <meta property="og:image" content="https://www.arcinnovations.it/Picture/customer-churn-prediction.png">
+  <meta property="og:image" content="https://www.arcinnovations.it/Picture/customer-churn-predction.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- JSON-LD -->
@@ -38,7 +38,7 @@
           "@type": "CreativeWork",
           "name": "Customer Churn Prediction",
           "description": "End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.",
-          "image": "https://www.arcinnovations.it/Picture/customer-churn-prediction.png"
+          "image": "https://www.arcinnovations.it/Picture/customer-churn-predction.png"
         }
       },
       {
@@ -49,7 +49,7 @@
           "@type": "CreativeWork",
           "name": "Enterprise Email Security",
           "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.",
-          "image": "https://www.arcinnovations.it/Picture/enterprise-email-security.png"
+          "image": "https://www.arcinnovations.it/email-security/enterprise-email-security.png"
         }
       },
       {
@@ -60,12 +60,31 @@
           "@type": "CreativeWork",
           "name": "Sales Forecasting",
           "description": "Forecasting pipeline with actual vs forecast dashboards and business insights.",
-          "image": "https://www.arcinnovations.it/Picture/sales-forecasting.png"
+          "image": "https://www.arcinnovations.it/sales-forecasting/thumbnail.png"
         }
       }
     ]
   }
   </script>
+
+  <!-- Thumbnail sizing helper (keeps original layout) -->
+  <style>
+    .pf-card__media {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      max-width: 800px;     /* smaller displayed size */
+      max-height: 450px;    /* 16:9 cap */
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+    .pf-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;    /* crops nicely if aspect differs */
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <!-- Nav -->
@@ -96,10 +115,9 @@
       <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
         <div class="pf-card__media">
           <img
-            src="Picture/customer-churn-prediction.png"
+            src="Picture/customer-churn-predction.png"
             alt="Customer Churn Prediction project thumbnail"
-            width="1100" height="500"
-            loading="eager" fetchpriority="high">
+            width="800" height="450" loading="eager" fetchpriority="high">
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Customer Churn Prediction</h3>
@@ -123,10 +141,9 @@
         <div class="pf-card__media">
           <img
             id="email-thumb"
-            src="Picture/enterprise-email-security.png"
+            src="email-security/enterprise-email-security.png"
             alt="Enterprise Email Security project thumbnail"
-            width="1100" height="500"
-            loading="lazy">
+            width="800" height="450" loading="lazy">
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Enterprise Email Security</h3>
@@ -149,10 +166,9 @@
       <a class="pf-card" href="sales-forecasting.html" data-category="analytics" aria-label="Open Sales Forecasting project">
         <div class="pf-card__media">
           <img
-            src="Picture/sales-forecasting.png"
-            alt="Sales Forecasting project thumbnail showing forecast vs actuals"
-            width="1100" height="500"
-            loading="lazy">
+            src="sales-forecasting/thumbnail.png"
+            alt="Sales Forecasting project thumbnail"
+            width="800" height="450" loading="lazy">
         </div>
         <div class="pf-card__body">
           <h3 class="pf-card__title">Sales Forecasting</h3>
