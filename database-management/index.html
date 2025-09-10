@@ -9,15 +9,63 @@
   <!-- SEO -->
   <meta name="description" content="Database Management System — Centralized inventory & orders DB with audit logs, stock tracking, and revenue analytics."/>
   <link rel="canonical" href="https://arcinnovations.it/database-management/index.html"/>
+
+  <!-- Page-level layout tweaks to match other projects -->
+  <style>
+    /* HERO matches other projects: image as background, dark overlay, centered text */
+    .case-hero {
+      --hero-bg: url('thumbnail.png');
+      position: relative;
+      min-height: 48vw;          /* responsive height */
+      max-height: 520px;         /* cap on large screens */
+      display: grid;
+      place-items: center;
+      background: center / cover no-repeat var(--hero-bg);
+    }
+    .case-hero__overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45));
+    }
+    .case-hero__content {
+      position: relative; text-align: center; color: #fff;
+      padding: 3rem 1rem;
+    }
+    .case-hero__content img { display: none; } /* we use background instead */
+
+    /* Body width/spacing consistent with other pages */
+    .case-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+    .case-content h2 { margin: 2rem 0 0.75rem; }
+    .case-content p  { line-height: 1.6; }
+
+    /* Screenshot grid like other projects */
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .screenshot-grid img {
+      width: 100%; height: auto; display: block;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+    @media (max-width: 900px) {
+      .screenshot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <!-- Hero -->
   <header class="case-hero">
     <div class="case-hero__overlay"></div>
     <div class="case-hero__content">
-      <img src="thumbnail.png" alt="Database Management System thumbnail" width="1200" height="675" loading="eager"/>
       <h1>Database Management System</h1>
-      <p>Inventory & Orders DBMS with RBAC, audit logs, low-stock alerts, and revenue reports.</p>
+      <p>Inventory &amp; Orders DBMS with RBAC, audit logs, low-stock alerts, and revenue reports.</p>
     </div>
   </header>
 
@@ -61,7 +109,7 @@
 
     <!-- Screenshots -->
     <section>
-      <h2>Dashboards & Reports</h2>
+      <h2>Dashboards &amp; Reports</h2>
       <p>Below are examples of analytics generated directly from the database:</p>
       <div class="screenshot-grid">
         <img src="dbms-lowstock.png" alt="Low Stock Report screenshot" width="600" height="340" loading="lazy"/>
@@ -71,7 +119,7 @@
 
     <!-- Results -->
     <section>
-      <h2>Results & Business Value</h2>
+      <h2>Results &amp; Business Value</h2>
       <ul>
         <li>📊 Clear visibility of current stock and reorder needs</li>
         <li>🔒 Full audit trail for order lifecycle events</li>
