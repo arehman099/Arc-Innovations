@@ -10,59 +10,32 @@
   <meta name="description" content="Database Management System — Centralized inventory & orders DB with audit logs, stock tracking, and revenue analytics."/>
   <link rel="canonical" href="https://arcinnovations.it/database-management/index.html"/>
 
-  <!-- Page-level layout tweaks to match other projects -->
   <style>
-    /* HERO matches other projects: image as background, dark overlay, centered text */
+    /* Clean hero: just overlay color + text */
     .case-hero {
-      --hero-bg: url('thumbnail.png');
       position: relative;
-      min-height: 48vw;          /* responsive height */
-      max-height: 520px;         /* cap on large screens */
-      display: grid;
-      place-items: center;
-      background: center / cover no-repeat var(--hero-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      background: #1a1a1a; /* solid dark background */
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
     }
-    .case-hero__overlay {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45));
+    .case-hero__content h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
     }
-    .case-hero__content {
-      position: relative; text-align: center; color: #fff;
-      padding: 3rem 1rem;
-    }
-    .case-hero__content img { display: none; } /* we use background instead */
-
-    /* Body width/spacing consistent with other pages */
-    .case-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 48px 20px;
-    }
-    .case-content h2 { margin: 2rem 0 0.75rem; }
-    .case-content p  { line-height: 1.6; }
-
-    /* Screenshot grid like other projects */
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-    .screenshot-grid img {
-      width: 100%; height: auto; display: block;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    }
-    @media (max-width: 900px) {
-      .screenshot-grid { grid-template-columns: 1fr; }
+    .case-hero__content p {
+      font-size: 1.1rem;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
   <!-- Hero -->
   <header class="case-hero">
-    <div class="case-hero__overlay"></div>
     <div class="case-hero__content">
       <h1>Database Management System</h1>
       <p>Inventory &amp; Orders DBMS with RBAC, audit logs, low-stock alerts, and revenue reports.</p>
@@ -88,7 +61,6 @@
         The schema is designed in PostgreSQL with referential integrity and validation checks.
         Below is a simplified ER diagram:
       </p>
-      <!-- Images are in the SAME folder as index.html -->
       <img src="dbms-schema.png" alt="Entity-Relationship diagram of the DBMS" width="900" height="500" loading="lazy"/>
       <p>
         Key entities include <strong>Products</strong>, <strong>Orders</strong>, and
@@ -133,7 +105,6 @@
       <h2>How to Run</h2>
       <ol>
         <li>Create database: <code>createdb arc_dbms</code></li>
-        <!-- File names/paths match your repo exactly -->
         <li>Apply schema: <code>psql arc_dbms -f 01_scheman.sql</code></li>
         <li>Seed data: <code>psql arc_dbms -f 02_seed.sql</code></li>
         <li>Optional queries: <code>psql arc_dbms -f 03_queries.sql</code></li>
@@ -141,9 +112,6 @@
           <code>python load_csv.py --db postgresql://user:pass@localhost/arc_dbms</code>
         </li>
       </ol>
-      <p style="font-size:0.95rem;opacity:0.8;">
-        Note: If you rename <code>01_scheman.sql</code> to <code>01_schema.sql</code> later, update the command above accordingly.
-      </p>
     </section>
   </main>
 
