@@ -4,44 +4,142 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | Arc Innovations</title>
+
+  <!-- Primary CSS -->
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.cdnfonts.com/css/bell-mt" onload="this.rel='stylesheet'">
+
+  <!-- SEO -->
+  <meta name="description" content="Arc Innovations portfolio — selected work in AI & analytics, including a full churn prediction case study and enterprise email security implementation."/>
+  <link rel="canonical" href="https://www.arcinnovations.it/portfolio.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio | Arc Innovations">
+  <meta property="og:description" content="Selected work in AI & analytics, including churn prediction and enterprise email security.">
+  <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
+  <meta property="og:image" content="https://www.arcinnovations.it/Picture/customer-churn-prediction.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Arc Innovations Portfolio",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://www.arcinnovations.it/customer-churn.html",
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Customer Churn Prediction",
+          "description": "End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.",
+          "image": "https://www.arcinnovations.it/Picture/customer-churn-prediction.png"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://www.arcinnovations.it/email-security/index.html",
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Enterprise Email Security",
+          "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.",
+          "image": "https://www.arcinnovations.it/Picture/enterprise-email-security.png"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <h1>Our Portfolio</h1>
+  <!-- Nav -->
+  <nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="portfolio.html" class="active" aria-current="page">Portfolio</a></li>
+      <li><a href="index.html#contact-info">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="portfolio-hero">
+    <div class="portfolio-hero__overlay"></div>
+    <div class="portfolio-hero__content">
+      <h1>Our Portfolio</h1>
+      <p>Selected work in AI and analytics.</p>
+    </div>
   </header>
 
-  <main>
-    <section class="portfolio-section">
-      <div class="portfolio-grid">
+  <!-- Portfolio Grid -->
+  <section class="portfolio-wrap">
+    <div class="portfolio-grid">
 
-        <!-- Sales Forecasting Project -->
-        <div class="portfolio-item">
-          <img src="images/sales-forecasting.png" alt="Sales Forecasting"/>
-          <h3>Sales Forecasting</h3>
-          <p>End-to-end ML project forecasting sales with actual vs predicted dashboards and actionable insights.</p>
+      <!-- CARD 1: Churn -->
+      <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
+        <div class="pf-card__media">
+          <img
+            src="Picture/customer-churn-prediction.png"
+            alt="Customer Churn Prediction project thumbnail"
+            width="1200" height="675"
+            loading="eager" fetchpriority="high">
         </div>
-
-        <!-- Customer Churn Prediction Project -->
-        <div class="portfolio-item">
-          <img src="images/customer-churn-prediction.png" alt="Customer Churn Prediction"/>
-          <h3>Customer Churn Prediction</h3>
-          <p>ML-based solution to predict customer churn, enabling proactive retention strategies for businesses.</p>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Customer Churn Prediction</h3>
+          <p class="pf-card__desc">
+            End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.
+          </p>
+          <div class="pf-card__tags">
+            <span class="tag">Python</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">XGBoost</span>
+          </div>
+          <div class="pf-card__cta">
+            <span class="pf-link" aria-hidden="true">View Project</span>
+          </div>
         </div>
+      </a>
 
-        <!-- Enterprise Email Security Project -->
-        <div class="portfolio-item">
-          <img src="images/enterprise-email-security.png" alt="Enterprise Email Security"/>
-          <h3>Enterprise Email Security</h3>
-          <p>Secure enterprise-grade email implementation with phishing detection, monitoring, and reporting tools.</p>
+      <!-- CARD 2: Email Security -->
+      <a class="pf-card" href="email-security/index.html" data-category="security" aria-label="Open Enterprise Email Security project">
+        <div class="pf-card__media">
+          <img
+            id="email-thumb"
+            src="Picture/enterprise-email-security.png"
+            alt="Enterprise Email Security project thumbnail"
+            width="1200" height="675"
+            loading="lazy">
         </div>
+        <div class="pf-card__body">
+          <h3 class="pf-card__title">Enterprise Email Security</h3>
+          <p class="pf-card__desc">
+            Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.
+          </p>
+          <div class="pf-card__tags">
+            <span class="tag">Power Automate</span>
+            <span class="tag">Microsoft Graph</span>
+            <span class="tag">Security</span>
+            <span class="tag">Analytics</span>
+          </div>
+          <div class="pf-card__cta">
+            <span class="pf-link" aria-hidden="true">View Project</span>
+          </div>
+        </div>
+      </a>
 
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Arc Innovations. All rights reserved.</p>
+    <p>&copy; 2025 Arc Innovations | All rights reserved.</p>
   </footer>
 </body>
 </html>
