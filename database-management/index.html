@@ -8,14 +8,14 @@
 
   <!-- SEO -->
   <meta name="description" content="Database Management System — Centralized inventory & orders DB with audit logs, stock tracking, and revenue analytics."/>
-  <link rel="canonical" href="https://www.arcinnovations.it/database-management/index.html"/>
+  <link rel="canonical" href="https://arcinnovations.it/database-management/index.html"/>
 </head>
 <body>
   <!-- Hero -->
   <header class="case-hero">
     <div class="case-hero__overlay"></div>
     <div class="case-hero__content">
-      <img src="thumbnail.png" alt="Database Management System Thumbnail" width="1200" height="675" loading="eager"/>
+      <img src="thumbnail.png" alt="Database Management System thumbnail" width="1200" height="675" loading="eager"/>
       <h1>Database Management System</h1>
       <p>Inventory & Orders DBMS with RBAC, audit logs, low-stock alerts, and revenue reports.</p>
     </div>
@@ -27,8 +27,8 @@
     <section>
       <h2>Project Overview</h2>
       <p>
-        This project implements a robust database management system for handling suppliers, 
-        products, customers, orders, and stock movements. It provides role-based access control (RBAC), 
+        This project implements a robust database management system for handling suppliers,
+        products, customers, orders, and stock movements. It provides role-based access control (RBAC),
         audit logging for sensitive operations, and pre-built views for low-stock alerts and revenue tracking.
       </p>
     </section>
@@ -37,12 +37,13 @@
     <section>
       <h2>Database Schema</h2>
       <p>
-        The schema is designed in PostgreSQL with referential integrity and validation checks. 
+        The schema is designed in PostgreSQL with referential integrity and validation checks.
         Below is a simplified ER diagram:
       </p>
-      <img src="../assets/dbms-schema.png" alt="Database schema diagram" width="900" height="500" loading="lazy"/>
+      <!-- Images are in the SAME folder as index.html -->
+      <img src="dbms-schema.png" alt="Entity-Relationship diagram of the DBMS" width="900" height="500" loading="lazy"/>
       <p>
-        Key entities include <strong>Products</strong>, <strong>Orders</strong>, and 
+        Key entities include <strong>Products</strong>, <strong>Orders</strong>, and
         <strong>Stock Movements</strong> to ensure traceability of inventory changes.
       </p>
     </section>
@@ -52,33 +53,32 @@
       <h2>Implementation Highlights</h2>
       <ul>
         <li>✔ SQL schema with constraints and triggers for audit logging</li>
-        <li>✔ ETL pipeline with Python (<code>load_csv.py</code>) for bulk loading CSV data</li>
-        <li>✔ Pre-defined views for low-stock products and monthly revenue</li>
-        <li>✔ Optional Power BI dashboards for visualization</li>
+        <li>✔ ETL loader in Python (<code>load_csv.py</code>) for bulk CSV ingestion</li>
+        <li>✔ Views/queries for low-stock products and monthly revenue</li>
+        <li>✔ Optional BI dashboards for visualization</li>
       </ul>
     </section>
 
     <!-- Screenshots -->
     <section>
-      <h2>Dashboard & Reports</h2>
-      <p>Below are examples of how analytics and alerts are generated from the DB:</p>
+      <h2>Dashboards & Reports</h2>
+      <p>Below are examples of analytics generated directly from the database:</p>
       <div class="screenshot-grid">
-        <img src="../assets/dbms-lowstock.png" alt="Low Stock Report" width="600" height="340" loading="lazy"/>
-        <img src="../assets/dbms-revenue.png" alt="Revenue by Month" width="600" height="340" loading="lazy"/>
+        <img src="thumbnail.png" alt="Database Management System" width="600" height="340" loading="lazy"/>
+        <img src="dbms-schema.png" alt="Database Schema Diagram" width="600" height="340" loading="lazy"/>
+        <img src="dbms-lowstock.png" alt="Low Stock Report screenshot" width="600" height="340" loading="lazy"/>
+        <img src="dbms-revenue.png" alt="Monthly Revenue Analysis screenshot" width="600" height="340" loading="lazy"/>
       </div>
     </section>
 
     <!-- Results -->
     <section>
       <h2>Results & Business Value</h2>
-      <p>
-        With this DBMS, organizations gain:
-      </p>
       <ul>
-        <li>📊 Clear visibility of stock levels and reorder needs</li>
-        <li>🔒 Audit trails of every order change</li>
+        <li>📊 Clear visibility of current stock and reorder needs</li>
+        <li>🔒 Full audit trail for order lifecycle events</li>
         <li>⚡ Automated revenue and sales performance analytics</li>
-        <li>📦 Scalability for integrating with external order systems or APIs</li>
+        <li>📦 Scalable foundation ready for API and external system integration</li>
       </ul>
     </section>
 
@@ -87,10 +87,17 @@
       <h2>How to Run</h2>
       <ol>
         <li>Create database: <code>createdb arc_dbms</code></li>
-        <li>Apply schema: <code>psql arc_dbms -f sql/01_schema.sql</code></li>
-        <li>Seed data: <code>psql arc_dbms -f sql/02_seed.sql</code></li>
-        <li>Load CSVs with ETL: <code>python etl/load_csv.py --db postgresql://user:pass@localhost/arc_dbms</code></li>
+        <!-- File names/paths match your repo exactly -->
+        <li>Apply schema: <code>psql arc_dbms -f 01_scheman.sql</code></li>
+        <li>Seed data: <code>psql arc_dbms -f 02_seed.sql</code></li>
+        <li>Optional queries: <code>psql arc_dbms -f 03_queries.sql</code></li>
+        <li>Load CSVs (optional ETL):<br>
+          <code>python load_csv.py --db postgresql://user:pass@localhost/arc_dbms</code>
+        </li>
       </ol>
+      <p style="font-size:0.95rem;opacity:0.8;">
+        Note: If you rename <code>01_scheman.sql</code> to <code>01_schema.sql</code> later, update the command above accordingly.
+      </p>
     </section>
   </main>
 
