@@ -20,7 +20,7 @@
   <meta property="og:title" content="Portfolio | Arc Innovations">
   <meta property="og:description" content="Selected work in AI & analytics, including churn prediction, sales forecasting, and enterprise email security.">
   <meta property="og:url" content="https://www.arcinnovations.it/portfolio.html">
-  <meta property="og:image" content="https://www.arcinnovations.it/Picture/customer-churn-predction.png">
+  <meta property="og:image" content="https://www.arcinnovations.it/customer-churn/thumbnail.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- JSON-LD -->
@@ -38,7 +38,7 @@
           "@type": "CreativeWork",
           "name": "Customer Churn Prediction",
           "description": "End-to-end ML pipeline to identify at-risk customers and the drivers behind churn.",
-          "image": "https://www.arcinnovations.it/Picture/customer-churn-predction.png"
+          "image": "https://www.arcinnovations.it/customer-churn/thumbnail.png"
         }
       },
       {
@@ -49,7 +49,7 @@
           "@type": "CreativeWork",
           "name": "Enterprise Email Security",
           "description": "Automated quarantine digest, threat analytics, and secure release workflow for Microsoft 365.",
-          "image": "https://www.arcinnovations.it/email-security/enterprise-email-security.png"
+          "image": "https://www.arcinnovations.it/email-security/thumbnail.png"
         }
       },
       {
@@ -67,13 +67,13 @@
   }
   </script>
 
-  <!-- Thumbnail sizing helper (keeps original layout) -->
+  <!-- Thumbnail sizing helper -->
   <style>
     .pf-card__media {
       aspect-ratio: 16 / 9;
       width: 100%;
-      max-width: 800px;     /* smaller displayed size */
-      max-height: 450px;    /* 16:9 cap */
+      max-width: 800px;
+      max-height: 450px;
       overflow: hidden;
       border-radius: 12px;
       margin: 0 auto;
@@ -81,7 +81,7 @@
     .pf-card__media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;    /* crops nicely if aspect differs */
+      object-fit: cover;
       display: block;
     }
   </style>
@@ -115,7 +115,7 @@
       <a class="pf-card" href="customer-churn.html" data-category="ai" aria-label="Open Customer Churn case study">
         <div class="pf-card__media">
           <img
-            src="Picture/customer-churn-predction.png"
+            src="customer-churn/thumbnail.png"
             alt="Customer Churn Prediction project thumbnail"
             width="800" height="450" loading="eager" fetchpriority="high">
         </div>
@@ -140,8 +140,7 @@
       <a class="pf-card" href="email-security/index.html" data-category="security" aria-label="Open Enterprise Email Security project">
         <div class="pf-card__media">
           <img
-            id="email-thumb"
-            src="email-security/enterprise-email-security.png"
+            src="email-security/thumbnail.png"
             alt="Enterprise Email Security project thumbnail"
             width="800" height="450" loading="lazy">
         </div>
